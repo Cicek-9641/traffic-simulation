@@ -14,7 +14,7 @@ public class Road extends JPanel {
 
     public Road() {
         super();
-        // Örnek olarak bir benzin istasyonu ekleyelim
+        // Örnek olarak bir benzin istasyonu ekleme
         GasStation gasStation = new GasStation(300, LANE_HEIGHT * 3, this);
         GasStation gasStation2 = new GasStation(800, LANE_HEIGHT * 2, this);
         gasStations.add(gasStation);
@@ -36,19 +36,19 @@ public class Road extends JPanel {
         g.fillRect(0, 0, getWidth(), getHeight());
         g.setColor(Color.WHITE);
 
-        // Yolları çiz
+        // Yolların çizimi
         for (int a = LANE_HEIGHT; a < LANE_HEIGHT * 4; a = a + LANE_HEIGHT) {
             for (int b = 0; b < getWidth(); b = b + 40) {
                 g.fillRect(b, a, 30, 5);
             }
         }
 
-        // Araçları çiz
+        // Araçların çizimi
         for (int a = 0; a < cars.size(); a++) {
             cars.get(a).paintMe(g);
         }
 
-        // Benzin istasyonlarını çiz
+        // Benzin istasyonlarının çizimi
         for (int i = 0; i < gasStations.size(); i++) {
             gasStations.get(i).paintMe(g);
         }
