@@ -1,57 +1,66 @@
-package TrafikSimulasyon;
+package trafficsimulation;
+
 import java.awt.Graphics;
-import java.awt.Rectangle;
+
 
 public class Vehicle {
-	
-	int x;
-	int y;
-	int width = 0;
-	int height = 0;
-	int speed = 0;
-	  public Rectangle getBounds() {
-	        return new Rectangle(x, y, width, height);
-	    }
-	public Vehicle(int newx, int newy) {
-		x = newx;
-		y = newy;
-	}
-	
-	
-	public void paintMe(Graphics g) {
-	
-	}
 
+    int x;
+    int y;
+    int width = 0;
+    int height = 0;
+    int speed = 0;
+    //int gas = 0;
+    double fuelLevel = 0;  // Başlangıçta aracın benzin miktarı
+     
     
-	public int getX() {
-		// TODO Auto-generated method stub
-		return x;
-	}
+    public Vehicle(int newX, int newY) {
+        x = newX;
+        y = newY;
+    }
+
+    public void paintMe(Graphics g) {
+         //araç çizimi
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setX(int newx) {
+        x = newx;
+    }
+
+    public int getY() {
+        return y;
+    }
+     public void setY(int newy) {
+        y = newy;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+    
+    public double getFuelLevel() {
+        return fuelLevel;
+    }
+
+    public void decreaseFuel() {
+        // Her adımda benzin miktarını azalt
+        fuelLevel -= 0.5;  // Bu değeri ihtiyacınıza göre ayarlayabilirsiniz
+    }
+
+    public void refillFuel() {
+        // Benzin istasyonuna gidip benzin dolumu yap
+        fuelLevel = 100.0;  // Bu değeri ihtiyacınıza göre ayarlayabilirsiniz
+    }
 
 
-	public int getSpeed() {
-		// TODO Auto-generated method stub
-		return speed;
-	}
-
-
-	public void setX(int newx) {
-		// TODO Auto-generated method stub
-		x=newx;
-	}
-
-	public int getY() {
-		// TODO Auto-generated method stub
-		return y;
-	}
-	
-	public void setY(int newy) {
-		// TODO Auto-generated method stub
-		y=newy;
-	}
-	 public int getWidth() {
-		 return width;
-	 }
 }
- 
- 
+
+
