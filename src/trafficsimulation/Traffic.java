@@ -1,5 +1,5 @@
 package trafficsimulation;
-//AAAAABBBBCCC
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -107,7 +107,7 @@ public class Traffic implements ActionListener, Runnable {
             running = false;
         }
         if (event.getSource().equals(semi)) {
-            Semi semi = new Semi(0, 30);
+            Semi semi = new Semi(0, 30,road);
             road.addCar(semi);
             
             for (int x = 0; x < road.ROAD_WIDTH; x = x + 20) {
@@ -122,7 +122,7 @@ public class Traffic implements ActionListener, Runnable {
             }
         }
         if (event.getSource().equals(suv)) {
-            SUV suv = new SUV(0, 30);
+            SUV suv = new SUV(0, 30,road);
             road.addCar(suv);
             
             for (int x = 0; x < road.ROAD_WIDTH; x = x + 20) {
@@ -138,7 +138,7 @@ public class Traffic implements ActionListener, Runnable {
         }
 
         if (event.getSource().equals(sports)) {
-            Sports sports = new Sports(0, 30);
+            Sports sports = new Sports(0, 30,road);
             road.addCar(sports);
             for (int x = 0; x < road.ROAD_WIDTH; x = x + 20) {
                 for (int y = 40; y < 600; y = y + 150) {
@@ -154,9 +154,10 @@ public class Traffic implements ActionListener, Runnable {
     }
 
     @Override
-    public void run() {
+  public void run() {
         while (running == true) {
             road.step();
+            road.refillFuelForNextVehicle(); // Refill fuel for the next vehicle in the queue
             frame.repaint();
             try {
                 Thread.sleep(100);

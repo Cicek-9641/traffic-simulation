@@ -11,12 +11,11 @@ public class SUV extends Vehicle {
 
     Image myImage;
 
-    public SUV(int newX, int newY) {
-        super(newX, newY);
+    public SUV(int newX, int newY,Road road) {
+        super(newX, newY, road);
         width = 60;
         height = 30;
-        speed = 8;
-        //   gas = 10;
+        speed = 8;        
         fuelLevel = 80.0;
 
         try {

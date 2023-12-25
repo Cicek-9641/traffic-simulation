@@ -3,6 +3,8 @@ package trafficsimulation;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import javax.swing.JPanel;
 
 public class Road extends JPanel {
@@ -11,6 +13,8 @@ public class Road extends JPanel {
     final int ROAD_WIDTH = 1200;
     ArrayList<Vehicle> cars = new ArrayList<>();
     ArrayList<GasStation> gasStations = new ArrayList<>();
+    // Add a queue to store vehicles waiting at the gas station
+    Queue<Vehicle> gasStationQueue = new LinkedList<>();
 
     public Road() {
         super();
@@ -56,44 +60,8 @@ public class Road extends JPanel {
     }
 
     public void step() {
-//        for (int a = 0; a < cars.size(); a++) {
-//            Vehicle v = cars.get(a);
-//            if (collision(v.getX() + v.getSpeed(), v.getY(), v) == false) {
-//                v.setX(v.getX() + v.getSpeed());
-//                if (v.getX() > ROAD_WIDTH) {
-//                    if (collision(0, v.getY(), v) == false) {
-//                        v.setX(0);
-//                    }
-//
-//                }
-//            } else {// car ahead
-//                if ((v.getY() > 40)
-//                        && (collision(v.getX(), v.getY() - LANE_HEIGHT, v) == false)) {
-//                    v.setY(v.getY() - LANE_HEIGHT);
-//
-//                } 
-//                else if((v.getY() < 40 + 3 * LANE_HEIGHT)
-//                            && (collision(v.getX(), v.getY() + LANE_HEIGHT, v) == false)){
-//                    v.setY(v.getY() + LANE_HEIGHT);
-//                }
-//
-//            }
-//        }
-
-//        for (int a = 0; a < cars.size(); a++) {
-//            Vehicle v = cars.get(a);
-//            v.setX(v.getX() + v.getSpeed());
-//            v.decreaseFuel();  // Her adımda benzin miktarını azalt
-//            if (v.getFuelLevel() <= 33.3) {  // Benzin miktarı 33.3% veya daha azsa
-//                goToNearestGasStation(v);
-//            }
-//            if (v.getX() > ROAD_WIDTH) {
-//                v.setX(0);
-//            }
-//        }
 
 ////////////////
-
         for (int a = 0; a < cars.size(); a++) {
             Vehicle v = cars.get(a);
 
@@ -117,7 +85,10 @@ public class Road extends JPanel {
                 }
             }
 
-            v.decreaseFuel(); // Decrease fuel at each step
+            v.decreaseFuel();
+            v.checkLowFuel(); // Check for low fuel and go to the nearest gas station if needed
+
+            // v.decreaseFuel(); // Decrease fuel at each step
             if (v.getFuelLevel() <= 33.3) {
                 goToNearestGasStation(v);
             }
@@ -127,10 +98,6 @@ public class Road extends JPanel {
                 v.setX(0);
             }
         }
-
-  
-
-
 
     }
 
@@ -150,27 +117,29 @@ public class Road extends JPanel {
         return false;
     }
 
-    // Yeni bir metod ekleyerek en yakın benzin istasyonuna gitme işlemini gerçekleştir
-    private void goToNearestGasStation(Vehicle v) {
+    // Modify the goToNearestGasStation method
+    public void goToNearestGasStation(Vehicle v) {
         GasStation nearestStation = findNearestGasStation(v);
         if (nearestStation != null) {
             synchronized (nearestStation) {
                 v.setX(nearestStation.x);
                 v.setY(nearestStation.y);
-                try {
-                    Thread.sleep(3000);  // Bekleme süresini ihtiyacınıza göre ayarlayabilirsiniz
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                v.refillFuel();
+                gasStationQueue.offer(v); // Add the vehicle to the gas station queue
+                v.decreaseFuel(); // Decrease fuel to trigger refueling
             }
         }
     }
- 
 
-
-
-
+// Add a method to refill fuel for a vehicle in the queue
+    public void refillFuelForNextVehicle() {
+        if (!gasStationQueue.isEmpty()) {
+            Vehicle nextVehicle = gasStationQueue.poll();
+            synchronized (nextVehicle) {
+                nextVehicle.refillFuel();
+                nextVehicle.notify(); // Notify the waiting vehicle that refueling is complete
+            }
+        }
+    }
 
     // Araç için en yakın benzin istasyonunu bulma
     private GasStation findNearestGasStation(Vehicle v) {
@@ -186,10 +155,14 @@ public class Road extends JPanel {
         return nearestStation;
 
     }
-    
-    
-     public void clearCars() {
+
+    public void clearCars() {
         cars.clear();
     }
+
+    public void addToQueue(Vehicle aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); 
     
+    }
+
 }

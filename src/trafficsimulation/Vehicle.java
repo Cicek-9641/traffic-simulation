@@ -13,10 +13,34 @@ public class Vehicle {
     //int gas = 0;
     double fuelLevel = 0;  // Başlangıçta aracın benzin miktarı
      
+       // Add a reference to the Road object to access gas stations
+    Road road;
     
-    public Vehicle(int newX, int newY) {
+    
+ 
+    public Vehicle(int newX, int newY, Road road) {
         x = newX;
         y = newY;
+        this.road = road;
+    }
+    
+    // Method to check and handle low fuel
+    public void checkLowFuel() {
+        if (fuelLevel <= 33.3) {
+            road.goToNearestGasStation(this);
+        }
+    }
+    
+    // Add a method to go to the gas station and wait
+    public void goToGasStationAndWait(Road road) {
+        road.addToQueue(this); // Add the vehicle to the gas station queue
+        synchronized (this) {
+            try {
+                wait(); // Wait until the vehicle gets refueled
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void paintMe(Graphics g) {
