@@ -17,6 +17,7 @@ public class Semi extends Vehicle {
 		width = 120;
 		height = 40;
 		speed = 50;
+		fuelLevel = 80.0;
 		
 		try {
 			myImage = ImageIO.read(new File("kamyon.jpg"));
