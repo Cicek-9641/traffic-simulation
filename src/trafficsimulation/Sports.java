@@ -18,6 +18,7 @@ public class Sports extends Vehicle {
 		width = 40;
 		height = 20;
 		speed = 12;
+	      fuelLevel = 80.0;
 		try {
 		myImage = ImageIO.read(new File("car.png"));
 		}catch(IOException ex) {
