@@ -25,8 +25,7 @@ public class Traffic implements Runnable, ActionListener {
 
 	Road road = new Road();
 
-//	altYol ayol = new altYol();
-	
+ 	
 	JButton start = new JButton("Baslat");
 	JButton stop = new JButton("Duraklat");
 	JLabel throughput = new JLabel("Verim:0");
@@ -64,8 +63,7 @@ public class Traffic implements Runnable, ActionListener {
 		west.add(suv);
 		west.add(sports);
 		
-     //   ayol.add(semi);
-
+ 
 		frame.setSize(1500, 500);
 		frame.setLayout(new BorderLayout());
 		frame.add(road, BorderLayout.CENTER);

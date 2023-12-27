@@ -33,24 +33,24 @@ public class DragDropRealTimeLight {
 
     }
  
-    public void DragDropRealTimeLightt(int x, int y, Road road) {
-        this.x = x;
-        this.y = y;
-
-        try {
-            myImage = ImageIO.read(new File("green.png")); 
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        DragDropRealTimeMouseListener mouseListener = new DragDropRealTimeMouseListener(this, road);
-        road.addMouseListener(mouseListener);
-        road.addMouseMotionListener(mouseListener);
-
-    }
+//    public void DragDropRealTimeLightt(int x, int y, Road road) {
+//        this.x = x;
+//        this.y = y;
+//
+//        try {
+//            myImage = ImageIO.read(new File("green.png")); 
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+//
+//        DragDropRealTimeMouseListener mouseListener = new DragDropRealTimeMouseListener(this, road);
+//        road.addMouseListener(mouseListener);
+//        road.addMouseMotionListener(mouseListener);
+//
+//    }
     public void setImage(String imagePath) {
         try {
-            myImage = ImageIO.read(new File("green.png"));
+            myImage = ImageIO.read(new File("red.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }

@@ -28,50 +28,34 @@ public class DragDropRealTimeMouseListener extends MouseAdapter {
         	reallight.isDragging = true;
         }
     }
+ 
+
 	@Override
 	public void mouseReleased(MouseEvent e) {
-	    if (reallight.isDragging) {
-	        reallight.isDragging = false;
-
-	        Timer timer = new Timer();
-	        timer.schedule(new TimerTask() {
-	            @Override
-	            public void run() {
-	                for (Vehicle car : road.getCars()) {
-	                    if (car instanceof Vehicle) {
-	                        ((Vehicle) car).speed = 5; // Yol devam etsin, araçların hızını istediğiniz değere ayarlayın
-	                    }
-	                }
-	                road.repaint();
-	                timer.cancel();
-	            }
-	        }, 5000);
-
-	        reallight.setImage("green.png"); // Işığı yeşile dönüştür
+		 int mouseY = e.getY();
+ 
+		reallight.isDragging = false;
+  	   // int slowDownAmount = -5;  
+		if (mouseY < 350) {
+	    for (Vehicle car : road.getCars()) {
+	        if (car instanceof Vehicle) {
+	            ((Vehicle) car).speed=0;    
+	        }
 	    }
+ 	    road.repaint();
 	}
-
-//	@Override
-//	public void mouseReleased(MouseEvent e) {
-//		DragDropRealTimeLight dr = new DragDropRealTimeLight(0, 0, road);
-//		 reallight.isDragging = false;
-//		    
-//		    Timer timer = new Timer();
-//		    timer.schedule(new TimerTask() {
-//		        @Override
-//		        public void run() {
-//		            for (Vehicle car : road.getCars()) {
-//		                if (car instanceof Vehicle) {
-//		                    ((Vehicle) car).speed = 0;  //  durdur
-//		                }
-//		            }
-//		            road.repaint();		         
-//		            timer.cancel(); 
-//		        }
-//		    }, 5000); 
-//	 
-//		    dr.setImage("green.png");
-//	}
+		else {
+			  for (Vehicle car : road.getCars()) {
+			        if (car instanceof Vehicle) {
+			            ((Vehicle) car).speed=25;    
+			        }
+			    }
+		 	    road.repaint();
+			
+		}
+	}
+	
+ 
  
     @Override
     public void mouseDragged(MouseEvent e) {

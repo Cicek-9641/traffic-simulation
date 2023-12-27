@@ -47,6 +47,7 @@ public class Road extends JPanel {
  
 	final int LANE_HEIGHT = 120;
 	final int ROAD_WIDTH = 800;
+	
 	ArrayList<Vehicle> cars = new ArrayList<Vehicle>();
 	int carCount = 0;
 	  public List<Vehicle> getCars() {
@@ -96,23 +97,7 @@ public class Road extends JPanel {
 	        gasStations.add(gasStation);
 	        gasStations.add(gasStation2);
 		 
-		trafficLightButton.setBackground(Color.BLACK);
-		//add(surukleIconn);
-		add(trafficLightButton);
- 		Timer timer = new Timer(5000, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (isRedLight) {
-					trafficLightButton.setIcon(greenIcon);
-				} else {
-					trafficLightButton.setIcon(redIcon);
-				}
-
-				isRedLight = !isRedLight;
-			}
-		});
-
-		timer.start();
+		
 	 
 	}
 	 
@@ -174,7 +159,7 @@ public class Road extends JPanel {
 	public void step() {
 		for (int a = 0; a < cars.size(); a++) {
 			Vehicle v = cars.get(a);
-			if (!isRedLight && collision(v.getX() + v.getSpeed(), v.getY(), v) == false) {
+			if ( collision(v.getX() + v.getSpeed(), v.getY(), v) == false) {
 				v.setX(v.getX() + v.getSpeed());
 				if (v.getX() > ROAD_WIDTH) {
 					if (collision(0, v.getY(), v) == false) {
@@ -225,14 +210,16 @@ public class Road extends JPanel {
 		}
 		return false;
 	}
-
+	
+	
 	public int getCarCount() {
 		return carCount;
 	}
-
+	
 	public void resetCarCount() {
 		carCount = 0;
 	}
+	
 	 public void goToNearestGasStation(Vehicle v) {
 	        GasStation nearestStation = findNearestGasStation(v);
 	        if (nearestStation != null) {
