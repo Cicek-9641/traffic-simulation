@@ -47,6 +47,7 @@ public class Road extends JPanel {
  
 	final int LANE_HEIGHT = 120;
 	final int ROAD_WIDTH = 800;
+	//final int VERTİCAL_ROAD_WIDTH = 30; dikey yolun genişliği
 	
 	ArrayList<Vehicle> cars = new ArrayList<Vehicle>();
 	int carCount = 0;
@@ -125,6 +126,10 @@ public class Road extends JPanel {
      
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		/*g.setColor(Color.YELLOW);
+        	for (int c = 0; c < getWidth(); c += VERTICAL_ROAD_WIDTH + 10) {
+            	g.fillRect(c, 0, VERTICAL_ROAD_WIDTH, getHeight());
+        	}*/ //Dikey yol 
 		g.setColor(Color.GRAY);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.WHITE);
