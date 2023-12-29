@@ -25,12 +25,10 @@ public class Road extends JPanel {
 	
  
 	private ImageIcon redIcon = new ImageIcon("red.png");
-	private ImageIcon greenIcon = new ImageIcon("green.png");
 	private ImageIcon surukleIcon = new ImageIcon("suruklered.png");
 	ArrayList<DragDropLight> dragdrops = new ArrayList<DragDropLight>();
 	ArrayList<DragDropLevha> dragdropslevha = new ArrayList<DragDropLevha>();
 	ArrayList<DragDropRealTimeLight> dragdropsreallight = new ArrayList<DragDropRealTimeLight>();
-	ArrayList<DragDropGreenLight> dragdropsgreenlight = new ArrayList<DragDropGreenLight>();
 	
 	//y
      ArrayList<GasStation> gasStations = new ArrayList<>();
@@ -42,7 +40,6 @@ public class Road extends JPanel {
 
 	private JButton trafficLightButton = new JButton(redIcon);
 	
-	private JButton greenLightButton = new JButton(greenIcon);
 
  
 	final int LANE_HEIGHT = 120;
@@ -89,8 +86,7 @@ public class Road extends JPanel {
 		 DragDropRealTimeLight dragdropsreal  = new DragDropRealTimeLight(500, LANE_HEIGHT * 3, this);
 		 dragdropsreallight.add(dragdropsreal);
 		 
-		 DragDropGreenLight dragdropsgreen   = new DragDropGreenLight(600, LANE_HEIGHT * 3, this);
-		 dragdropsgreenlight.add(dragdropsgreen);
+		
 		  
 		// Örnek olarak bir benzin istasyonu ekleme
 	        GasStation gasStation = new GasStation(700, LANE_HEIGHT * 3, this);
@@ -113,12 +109,7 @@ public class Road extends JPanel {
 	
      public void addDragDropLevha(DragDropLevha dragdropLevha) {
 		dragdropslevha.add(dragdropLevha);
-	 }
-     public void addDragDropGreenLight(DragDropGreenLight dragdropsgreen) {
-    	 dragdropsgreenlight.add(dragdropsgreen);
- 	 }
-     
-     
+	 }     
      public void addGasStation(GasStation gasStation) {
          gasStations.add(gasStation);
      }
@@ -152,10 +143,7 @@ public class Road extends JPanel {
 		   for (int i = 0; i < dragdropsreallight.size(); i++) {
 			   dragdropsreallight.get(i).paintMe(g);
 	       }
-		   
-		   for (int i = 0; i < dragdropsgreenlight.size(); i++) {
-			   dragdropsgreenlight.get(i).paintMe(g);
-	       }
+	
 		   for (int i = 0; i < gasStations.size(); i++) {
 	            gasStations.get(i).paintMe(g);
 	        }
