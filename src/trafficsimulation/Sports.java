@@ -17,7 +17,7 @@ public class Sports extends Vehicle {
     	super(newx,newy,road);
 		width = 40;
 		height = 20;
-		speed = 12;
+		speed = 100;
 	      fuelLevel = 80.0;
 		try {
 		myImage = ImageIO.read(new File("car.png"));
