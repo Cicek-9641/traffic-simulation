@@ -25,12 +25,10 @@ public class Sports extends Vehicle {
 			ex.printStackTrace();
 		}
 	}
-	public void slowDown() {
-         speed -= 1;
-         if (speed < 0) {
-         speed = 0;
-        }
-    }
+
+	  public void setSpeed(int newSpeed) {
+ 	         speed = newSpeed;
+	    }
 	
 	public void paintMe(Graphics g) {
 //		g.setColor(Color.RED);
