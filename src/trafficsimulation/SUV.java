@@ -14,7 +14,7 @@ public class SUV extends Vehicle {
 		super(newx,newy,road);
 		width = 60;
 		height = 30;
-		speed = 8;
+		speed = 80;
         fuelLevel = 80.0;
 
 		try {
