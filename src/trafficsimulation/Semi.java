@@ -46,12 +46,10 @@ public class Semi extends Vehicle {
 
 	}
 
-	public void hizlanButton(int hizlanAmount) {
-		  speed += hizlanAmount;
-	        if (speed < 0) {
-	         speed = 0;
-	        }		
-	}
+ 
+	  public void setSpeed(int newSpeed) {
+ 	         speed = newSpeed;
+	    }
  
 
 
