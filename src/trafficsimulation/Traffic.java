@@ -1,4 +1,4 @@
-package TrafikSimulasyon;
+package trafficsimulation;
  
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,19 +19,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 
-public class Trafik implements Runnable, ActionListener {
+public class Traffic implements Runnable, ActionListener {
 	
-	
- 	
-
 	JFrame frame = new JFrame("Nesne dersi odev");
 
 	Road road = new Road();
-	
-	
 
-	altYol ayol = new altYol();
-	
+ 	
 	JButton start = new JButton("Baslat");
 	JButton stop = new JButton("Duraklat");
 	JLabel throughput = new JLabel("Verim:0");
@@ -42,8 +36,7 @@ public class Trafik implements Runnable, ActionListener {
 
 	JButton suv = new JButton("SUV");
 	JButton sports = new JButton("Spor");
-	JButton suvup = new JButton("SUV guncelle");
-
+ 
 	Container west = new Container();
 
 	boolean running = false;
@@ -54,90 +47,26 @@ public class Trafik implements Runnable, ActionListener {
 
 	Timer timer;
 	boolean isRed = true;
-	private JTextField slowdownField;
-	private JTextField hizArtirField;
-
-	public Trafik() {
-   
-
-		slowdownField = new JTextField();
-		Dimension fieldSize = new Dimension(100, 30);
-		slowdownField.setPreferredSize(fieldSize);
-
-		hizArtirField = new JTextField();
-		Dimension fieldSize1 = new Dimension(200, 130);
-		hizArtirField.setPreferredSize(fieldSize1);
-		
-		JButton slowdownButton = new JButton("Hız Azalt");
-		JButton hizlanButton = new JButton("Hız Artısı Yap");
 
 
- 		slowdownButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					int slowdownAmount = Integer.parseInt(slowdownField.getText());
-
-					Semi semi = new Semi(0, 30);
-					road.addCar(semi);
-			//		semi.slowDown(slowdownAmount);
-			 		 
-				} catch (NumberFormatException ex) {
-
-					JOptionPane.showMessageDialog(null, "  geçerli bir sayı girin.");
-				}
-			}
-		});
- 		
- 		hizlanButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					int hizlanAmount = Integer.parseInt(hizlanButton.getText());
-
-					Semi semi = new Semi(0, 30);
-					road.addCar(semi);
-					semi.hizlanButton(hizlanAmount);
-					 
-				} catch (NumberFormatException ex) {
-
-					JOptionPane.showMessageDialog(null, "  geçerli bir sayı girin.");
-				}
-			}
-		});
-	 
- 		
-
-		west.setLayout(new GridLayout(5, 1));
-
-		JPanel slowdownPanel = new JPanel();
-		slowdownPanel.add(slowdownButton);
-		slowdownPanel.add(slowdownField, BorderLayout.CENTER);
-		
-		JPanel hizArtirPanel = new JPanel();
-		hizArtirPanel.add(hizlanButton);
-		hizArtirPanel.add(hizArtirField, BorderLayout.CENTER);
-		
+   	public Traffic() {
+  
+ 		west.setLayout(new GridLayout(5, 1));
 		semi.setBackground(Color.ORANGE);
  		suv.setBackground(Color.PINK);
 		sports.setBackground(Color.lightGray);
 		start.setBackground(Color.green);
 		stop.setBackground(Color.red);
 
-		slowdownButton.setBackground(Color.MAGENTA);
-		suvup.setBackground(Color.orange);
-
+ 
 		west.add(semi);
 		west.add(suv);
 		west.add(sports);
 		
-		west.add(slowdownPanel);
-		west.add(suvup);
-		west.add(hizArtirPanel);
-        ayol.add(semi);
-
+ 
 		frame.setSize(1500, 500);
 		frame.setLayout(new BorderLayout());
 		frame.add(road, BorderLayout.CENTER);
-		//frame.add(ayol, BorderLayout.AFTER_LINE_ENDS);
 	 
 		south.setLayout(new GridLayout(1, 6));
 		south.add(start);
@@ -159,9 +88,7 @@ public class Trafik implements Runnable, ActionListener {
 		sports.addActionListener(this);
 		
 		
-		west.add(suvup);
-		suvup.addActionListener(this);
-      
+ 
 		 
 		frame.add(south, BorderLayout.SOUTH);
 
@@ -174,6 +101,15 @@ public class Trafik implements Runnable, ActionListener {
 		
 
 	}
+   	
+//    public void restart() {
+//        running = false;  // Simülasyonu durdur
+//        road.clearCars();  // Araçları temizle
+//        road.repaint();    // Paneli tekrar çiz
+//        running = true;   // Simülasyonu tekrar başlat
+//        Thread t = new Thread(this);
+//        t.start();
+//    }
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
@@ -182,8 +118,8 @@ public class Trafik implements Runnable, ActionListener {
 		
 		if (event.getSource().equals(start)) {
 			if (running == false) {
-				running = true;
-				road.resetCarCount();
+ 				running = true;
+			//	road.resetCarCount();
 				startTime = System.currentTimeMillis();
 				Thread t = new Thread(this);
 				t.start();
@@ -196,7 +132,7 @@ public class Trafik implements Runnable, ActionListener {
 		if (event.getSource().equals(semi)) {
 	
 			int slowDownAmount = 2;
-			Semi semi = new Semi(0, 30);
+			Semi semi = new Semi(0, 30,road);
 			road.addCar(semi);
  
 			for (int x = 0; x < road.ROAD_WIDTH; x = x + 20)
@@ -210,11 +146,10 @@ public class Trafik implements Runnable, ActionListener {
 					}
 				 
 				}
-		semi.slowDown(slowDownAmount);
 		}
  
 		if (event.getSource().equals(suv)) {
-			SUV suv = new SUV(0, 30);
+			SUV suv = new SUV(0, 30,road);
 			road.addCar(suv);
 			for (int x = 0; x < road.ROAD_WIDTH; x = x + 20)
 				for (int y = 40; y < 480; y = y + 120) {
@@ -230,7 +165,7 @@ public class Trafik implements Runnable, ActionListener {
 		}
 
 		if (event.getSource().equals(sports)) {
-			Sports sports = new Sports(0, 30);
+			Sports sports = new Sports(0, 30,road);
 			road.addCar(sports);
 
 			for (int x = 0; x < road.ROAD_WIDTH; x = x + 20)

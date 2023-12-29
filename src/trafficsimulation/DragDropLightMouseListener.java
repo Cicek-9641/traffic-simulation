@@ -1,4 +1,4 @@
-package TrafikSimulasyon;
+package trafficsimulation;
 
  
 import java.awt.event.MouseAdapter;

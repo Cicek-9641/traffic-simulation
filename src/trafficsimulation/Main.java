@@ -1,6 +1,9 @@
-package TrafikSimulasyon;
+package trafficsimulation;
 
-import TrafikSimulasyon.DosyaIslemleri;
+
+import trafficsimulation.DosyaIslemleri;
+
+
 
 public class Main {
 
@@ -8,8 +11,9 @@ public class Main {
 		
 		DosyaIslemleri file = new DosyaIslemleri();
 		file.createNewFile("trafikDurumu.txt");
-		new Trafik();
+		
+		new Traffic();
 		
 	}
 }
- 
+// 

@@ -1,4 +1,4 @@
-package TrafikSimulasyon;
+package trafficsimulation;
 
  
 import java.awt.event.MouseAdapter;
@@ -32,7 +32,7 @@ public class DragDropLevhaMouseListener extends MouseAdapter {
   	    int slowDownAmount = 1; 
 	    for (Vehicle car : road.getCars()) {
 	        if (car instanceof Vehicle) {
-	            ((Semi) car).slowDown(slowDownAmount);  
+	        //    ((Semi) car).slowDown(slowDownAmount);  
 	        }
 	    }
 

@@ -1,4 +1,4 @@
-package TrafikSimulasyon;
+package trafficsimulation;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -12,12 +12,13 @@ import javax.imageio.ImageIO;
 public class Semi extends Vehicle {
 	Image myImage;
 
-	public Semi(int newx, int newy) {
-		super(newx,newy);
+	public Semi(int newx, int newy, Road road) {
+		super(newx,newy,road);
 		width = 120;
 		height = 40;
 		speed = 50;
-		
+        fuelLevel = 80.0;
+
 		try {
 			myImage = ImageIO.read(new File("kamyon.jpg"));
 			}catch(IOException ex) {
@@ -35,7 +36,7 @@ public class Semi extends Vehicle {
 
      	System.out.println("pres");
 
-        }
+     	      }
     } 
 
 	public void paintMe(Graphics g) {

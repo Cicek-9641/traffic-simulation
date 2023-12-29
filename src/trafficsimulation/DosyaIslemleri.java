@@ -1,4 +1,4 @@
-package TrafikSimulasyon;
+package trafficsimulation;
 
 import java.io.File;
 import java.io.FileWriter;

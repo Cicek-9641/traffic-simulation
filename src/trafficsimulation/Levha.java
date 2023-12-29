@@ -1,4 +1,4 @@
-package TrafikSimulasyon;
+package trafficsimulation;
 
 	import javax.swing.*;
 	import java.awt.*;

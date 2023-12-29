@@ -1,4 +1,4 @@
-package TrafikSimulasyon;
+package trafficsimulation;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -12,18 +12,21 @@ public class Sports extends Vehicle {
 	
 	Image myImage;
 	
-	public Sports(int newx, int newy) {
-		super(newx,newy);
+ 
+    public Sports(int newx, int newy, Road road) {
+    	super(newx,newy,road);
 		width = 40;
 		height = 20;
 		speed = 12;
+        fuelLevel = 80.0;
+
 		try {
 		myImage = ImageIO.read(new File("car.png"));
 		}catch(IOException ex) {
 			ex.printStackTrace();
 		}
 	}
-    public void slowDown() {
+	public void slowDown() {
          speed -= 1;
          if (speed < 0) {
          speed = 0;
