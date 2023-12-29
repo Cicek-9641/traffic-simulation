@@ -26,8 +26,7 @@ public class Road extends JPanel {
  
 	private ImageIcon redIcon = new ImageIcon("red.png");
 	private ImageIcon surukleIcon = new ImageIcon("suruklered.png");
-	ArrayList<DragDropLight> dragdrops = new ArrayList<DragDropLight>();
-	ArrayList<DragDropLevha> dragdropslevha = new ArrayList<DragDropLevha>();
+ 	ArrayList<DragDropLevha> dragdropslevha = new ArrayList<DragDropLevha>();
 	ArrayList<DragDropRealTimeLight> dragdropsreallight = new ArrayList<DragDropRealTimeLight>();
 	
 	//y
@@ -76,11 +75,8 @@ public class Road extends JPanel {
 		super();
 		 
 		
-		
-		 DragDropLight dragdrop = new DragDropLight(300, LANE_HEIGHT * 3, this);
-		 dragdrops.add(dragdrop);
 		 
-		 DragDropLevha dragdroplevha = new DragDropLevha(400, LANE_HEIGHT * 3, this);
+		 DragDropLevha dragdroplevha = new DragDropLevha(300, LANE_HEIGHT * 3, this);
 		 dragdropslevha.add(dragdroplevha);
 		 
 		 DragDropRealTimeLight dragdropsreal  = new DragDropRealTimeLight(500, LANE_HEIGHT * 3, this);
@@ -102,10 +98,7 @@ public class Road extends JPanel {
 	public void addCar(Vehicle v) {
 		cars.add(v);
 	}
-	
-	public void addDragDropLight(DragDropLight dragdropLight) {
-	    dragdrops.add(dragdropLight);
-    }
+ 
 	
      public void addDragDropLevha(DragDropLevha dragdropLevha) {
 		dragdropslevha.add(dragdropLevha);
@@ -133,9 +126,7 @@ public class Road extends JPanel {
 			cars.get(a).paintMe(g);
 		}
 		  
-		   for (int i = 0; i < dragdrops.size(); i++) {
-			   dragdrops.get(i).paintMe(g);
-	       }
+		 
 		   for (int i = 0; i < dragdropslevha.size(); i++) {
 			   dragdropslevha.get(i).paintMe(g);
 	       }
