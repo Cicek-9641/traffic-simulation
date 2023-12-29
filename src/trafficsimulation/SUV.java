@@ -23,21 +23,10 @@ public class SUV extends Vehicle {
 				ex.printStackTrace();
 			}
 	}
-    public void slowDown() {
-         speed -= 1;
-         if (speed < 0) {
-         speed = 0;
-        }
-    }
-  
-	public void setImage(String imagePath) {
-		   try {
-	            myImage = ImageIO.read(new File(imagePath));
-	        } catch(IOException ex) {
-	            ex.printStackTrace();
-	        }
- 
-	    }		
+
+	  public void setSpeed(int newSpeed) {
+ 	         speed = newSpeed;
+	    }	
 	
 	public void paintMe(Graphics g) {
 	 
