@@ -26,18 +26,7 @@ public class Semi extends Vehicle {
 			}
 	}
 	
-    public void slowDown(int slowDownAmount) {
-        speed -= slowDownAmount;
-     	System.out.println(speed);
-
-        if (speed < 0) {
-         speed = 0;
-     	System.out.println(speed);
-
-     	System.out.println("pres");
-
-     	      }
-    } 
+   
 
 	public void paintMe(Graphics g) {
 	    //g.setColor(Color.BLUE);
