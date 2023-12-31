@@ -10,18 +10,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
+import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class Traffic implements Runnable, ActionListener {
-	
-	JFrame frame = new JFrame("Nesne dersi odev");
+	//AAAA
+	JFrame frame = new JFrame("NESNE");
 
 	Road road = new Road();
 
@@ -48,6 +52,8 @@ public class Traffic implements Runnable, ActionListener {
 	Timer timer;
 	boolean isRed = true;
 
+    JSlider speedSlider = new JSlider(JSlider.HORIZONTAL, 0, 500, 0);  
+    JLabel speedLabel = new JLabel("Hız: 0");  
 
    	public Traffic() {
   
@@ -64,7 +70,7 @@ public class Traffic implements Runnable, ActionListener {
 		west.add(sports);
 		
  
-		frame.setSize(1500, 500);
+		frame.setSize(1370, 700);
 		frame.setLayout(new BorderLayout());
 		frame.add(road, BorderLayout.CENTER);
 	 
@@ -75,8 +81,11 @@ public class Traffic implements Runnable, ActionListener {
 		stop.addActionListener(this);
 		south.add(throughput);
 		
-	 
+        south.add(speedLabel);  
 
+		south.add(new JLabel("Hız Artırma: "));
+        south.add(speedSlider);
+ 
 		west.setLayout(new GridLayout(3, 1));
 		
 		west.add(semi);
@@ -99,7 +108,27 @@ public class Traffic implements Runnable, ActionListener {
  
 		frame.repaint();
 		
+	     speedSlider.addChangeListener(new ChangeListener() {
+ 
+	            @Override
+	            public void stateChanged(ChangeEvent e) {
+	            	  int speedValue = speedSlider.getValue();
+	 					speedLabel.setText("Hız: " + speedValue); 
+	                for (Vehicle car : road.getCars()) {
+	                    if (car instanceof Vehicle) {
+	                    //    ((Vehicle) car).speed = 30;  
+	                        ((Semi) car).speed = speedValue; 
+ 
+	                    //    ((Sports) car).speed = speedValue;  
+	                   //    ((SUV) car).speed = speedValue;  
+	            		
 
+
+	                    }
+	                }
+ 
+	            }
+	        });
 	}
    	
 //    public void restart() {
@@ -114,7 +143,8 @@ public class Traffic implements Runnable, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		
-		 
+		int speedValue = speedSlider.getValue();
+		System.out.println(speedValue);
 		
 		if (event.getSource().equals(start)) {
 			if (running == false) {
@@ -123,7 +153,16 @@ public class Traffic implements Runnable, ActionListener {
 				startTime = System.currentTimeMillis();
 				Thread t = new Thread(this);
 				t.start();
-			}
+//			     for (Vehicle car : road.getCars()) {
+//	                    if (car instanceof Vehicle) {
+//	                    //   
+//		              ((Vehicle) car).fuelLevel = 10000;  
+//  
+// 
+//	                    }
+//	                }
+				
+ 			}
 		}
 		if (event.getSource().equals(stop)) {
 			running = false;

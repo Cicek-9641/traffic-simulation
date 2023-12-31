@@ -17,7 +17,7 @@ public class Sports extends Vehicle {
     	super(newx,newy,road);
 		width = 40;
 		height = 20;
-		speed = 12;
+		speed = 100;
         fuelLevel = 80.0;
 
 		try {
@@ -26,13 +26,10 @@ public class Sports extends Vehicle {
 			ex.printStackTrace();
 		}
 	}
-	public void slowDown() {
-         speed -= 1;
-         if (speed < 0) {
-         speed = 0;
-        }
+	 
+	 public void setSpeed(int newSpeed) {
+	         speed = newSpeed;
     }
-	
 	public void paintMe(Graphics g) {
 //		g.setColor(Color.RED);
 //		g.fillRect(x, y, width, height);

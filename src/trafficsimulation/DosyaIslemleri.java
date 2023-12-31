@@ -5,8 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class DosyaIslemleri {
-	
- 	
 
 	public void createNewFile(String path) {
 		
@@ -17,5 +15,4 @@ public class DosyaIslemleri {
 	        e.printStackTrace();
 	    }
 	}
-
 }

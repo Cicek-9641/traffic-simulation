@@ -14,17 +14,19 @@ import java.util.Queue;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 
 
 public class Road extends JPanel {
 	
  
+	    
 	private ImageIcon redIcon = new ImageIcon("red.png");
 	private ImageIcon greenIcon = new ImageIcon("green.png");
 	private ImageIcon surukleIcon = new ImageIcon("suruklered.png");
-	ArrayList<DragDropLight> dragdrops = new ArrayList<DragDropLight>();
-	ArrayList<DragDropLevha> dragdropslevha = new ArrayList<DragDropLevha>();
+  	ArrayList<DragDropLevha> dragdropslevha = new ArrayList<DragDropLevha>();
 	ArrayList<DragDropRealTimeLight> dragdropsreallight = new ArrayList<DragDropRealTimeLight>();
  	
 	//y   
@@ -44,20 +46,20 @@ public class Road extends JPanel {
 	
 	ArrayList<Vehicle> cars = new ArrayList<Vehicle>();
 	int carCount = 0;
-	  public List<Vehicle> getCars() {
+	
+	public List<Vehicle> getCars() {
 	        return cars;  
-	    }
+	}
+	
 	private boolean isRedLight = true;
 
 	public void saveCarCountToFile() {
 		try {
 			BufferedWriter writer = new BufferedWriter(
 					new FileWriter("trafikBilgi.txt", true));
-
 			LocalDateTime now = LocalDateTime.now();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 			String formattedDateTime = now.format(formatter);
-
 			writer.write(formattedDateTime + " - " + carCount);
 			writer.newLine();
 			writer.close();
@@ -71,26 +73,18 @@ public class Road extends JPanel {
 
 		super();
 		 
-		
-		
-		 DragDropLight dragdrop = new DragDropLight(300, LANE_HEIGHT * 3, this);
-		 dragdrops.add(dragdrop);
-		 
-		 DragDropLevha dragdroplevha = new DragDropLevha(400, LANE_HEIGHT * 3, this);
+		 DragDropLevha dragdroplevha = new DragDropLevha(300, LANE_HEIGHT * 3, this);
 		 dragdropslevha.add(dragdroplevha);
 		 
 		 DragDropRealTimeLight dragdropsreal  = new DragDropRealTimeLight(500, LANE_HEIGHT * 3, this);
 		 dragdropsreallight.add(dragdropsreal);
-	 
-		  
+	 		  
 		// Örnek olarak bir benzin istasyonu ekleme
 	        GasStation gasStation = new GasStation(700, LANE_HEIGHT * 3, this);
 	        GasStation gasStation2 = new GasStation(800, LANE_HEIGHT * 2, this);
 	        gasStations.add(gasStation);
 	        gasStations.add(gasStation2);
-		 
-		
-	 
+
 	}
 	 
 	
@@ -98,10 +92,7 @@ public class Road extends JPanel {
 		cars.add(v);
 	}
 	
-	public void addDragDropLight(DragDropLight dragdropLight) {
-	    dragdrops.add(dragdropLight);
-    }
-	
+ 
      public void addDragDropLevha(DragDropLevha dragdropLevha) {
 		dragdropslevha.add(dragdropLevha);
 	 }
@@ -127,9 +118,7 @@ public class Road extends JPanel {
 			cars.get(a).paintMe(g);
 		}
 		  
-		   for (int i = 0; i < dragdrops.size(); i++) {
-			   dragdrops.get(i).paintMe(g);
-	       }
+		 
 		   for (int i = 0; i < dragdropslevha.size(); i++) {
 			   dragdropslevha.get(i).paintMe(g);
 	       }
@@ -145,6 +134,8 @@ public class Road extends JPanel {
 	}
     
 	public void step() {
+	 
+	
 		for (int a = 0; a < cars.size(); a++) {
 			Vehicle v = cars.get(a);
 			if ( collision(v.getX() + v.getSpeed(), v.getY(), v) == false) {
@@ -169,22 +160,18 @@ public class Road extends JPanel {
 	            v.checkLowFuel(); // Check for low fuel and go to the nearest gas station if needed
 
 	            // v.decreaseFuel(); // Decrease fuel at each step
-	            if (v.getFuelLevel() <= 33.3) {
+	            if (v.getFuelLevel() <= 50) {//benzin bitince buraya geliyor
 	                goToNearestGasStation(v);
+	   
 	            }
 
 	            // Check if the vehicle moved beyond the road width after collision handling
-	            if (v.getX() > ROAD_WIDTH) {
-	                v.setX(0);
-	            }
+//	            if (v.getX() > ROAD_WIDTH) {
+//	                v.setX(0);
+//	            }
 		}
 	}
 	
-	
- 
-
- 
-
 	public boolean collision(int x, int y, Vehicle v) {
 		for (int a = 0; a < cars.size(); a++) {
 			Vehicle u = cars.get(a);
@@ -223,10 +210,13 @@ public class Road extends JPanel {
 	
 	// Add a method to refill fuel for a vehicle in the queue
     public void refillFuelForNextVehicle() {
+        System.out.println("geldi mi benxin");
+
         if (!gasStationQueue.isEmpty()) {
             Vehicle nextVehicle = gasStationQueue.poll();
             synchronized (nextVehicle) {
                 nextVehicle.refillFuel();
+                System.out.println("geldi mi benxin");
                 nextVehicle.notify(); // Notify the waiting vehicle that refueling is complete
             }
         }
@@ -246,14 +236,14 @@ public class Road extends JPanel {
         return nearestStation;
 
     }
-	
 
+    
+    
 //    public void clearCars() {
 //        cars.clear();
 //    }
 
     public void addToQueue(Vehicle aThis) {
         throw new UnsupportedOperationException("Not supported yet."); 
-    
     }
 }

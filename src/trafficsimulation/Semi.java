@@ -16,7 +16,7 @@ public class Semi extends Vehicle {
 		super(newx,newy,road);
 		width = 120;
 		height = 40;
-		speed = 50;
+		speed = 10;
         fuelLevel = 80.0;
 
 		try {
@@ -26,18 +26,7 @@ public class Semi extends Vehicle {
 			}
 	}
 	
-    public void slowDown(int slowDownAmount) {
-        speed -= slowDownAmount;
-     	System.out.println(speed);
-
-        if (speed < 0) {
-         speed = 0;
-     	System.out.println(speed);
-
-     	System.out.println("pres");
-
-     	      }
-    } 
+  
 
 	public void paintMe(Graphics g) {
 	    //g.setColor(Color.BLUE);
@@ -46,13 +35,9 @@ public class Semi extends Vehicle {
 
 	}
 
-	public void hizlanButton(int hizlanAmount) {
-		  speed += hizlanAmount;
-	        if (speed < 0) {
-	         speed = 0;
-	        }		
-	}
  
-
+	  public void setSpeed(int newSpeed) {
+ 	         speed = newSpeed;
+	    }
 
 }
