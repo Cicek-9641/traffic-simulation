@@ -32,7 +32,9 @@ public class DragDropLevhaMouseListener extends MouseAdapter {
   	    int slowDownAmount = 1; 
 	    for (Vehicle car : road.getCars()) {
 	        if (car instanceof Vehicle) {
-	            ((Semi) car).slowDown(slowDownAmount);  
+                ((Vehicle) car).speed = 30;  
+
+	       
 	        }
 	    }
 

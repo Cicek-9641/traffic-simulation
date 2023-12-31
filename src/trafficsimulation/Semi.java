@@ -10,36 +10,32 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Semi extends Vehicle {
-	Image myImage;
 
-	public Semi(int newx, int newy, Road road) {
-		super(newx,newy,road);
-		width = 120;
-		height = 40;
-		speed = 50;
-		fuelLevel = 80.0;
-		
-		try {
-			myImage = ImageIO.read(new File("kamyon.jpg"));
-			}catch(IOException ex) {
-				ex.printStackTrace();
-			}
-	}
-	
-   
+    Image myImage;
 
-	public void paintMe(Graphics g) {
-	    //g.setColor(Color.BLUE);
-		//g.fillRect(x, y, width, height);
-		g.drawImage(myImage,x,y,null);
+    public Semi(int newx, int newy, Road road) {
+        super(newx, newy, road);
+        width = 120;
+        height = 40;
+        speed = 5;
+        fuelLevel = 90.0;
 
-	}
+        try {
+            myImage = ImageIO.read(new File("kamyon.jpg"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
- 
-	  public void setSpeed(int newSpeed) {
- 	         speed = newSpeed;
-	    }
- 
+    public void paintMe(Graphics g) {
+        //g.setColor(Color.BLUE);
+        //g.fillRect(x, y, width, height);
+        g.drawImage(myImage, x, y, null);
 
+    }
+
+    public void setSpeed(int newSpeed) {
+        speed = newSpeed;
+    }
 
 }

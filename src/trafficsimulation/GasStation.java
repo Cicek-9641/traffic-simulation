@@ -32,25 +32,21 @@ public class GasStation {
 
     }
 
+    
+    
     public void setImage(String imagePath) {
         try {
             myImage = ImageIO.read(new File(imagePath));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
     }
 
+    
     public void paintMe(Graphics g) {
         // g.setColor(Color.ORANGE);
         // g.fillRect(x, y, 50, 30);
-
         g.drawImage(myImage, x, y, null);
-
+        
     }
-    
-    
-
-
-
 }

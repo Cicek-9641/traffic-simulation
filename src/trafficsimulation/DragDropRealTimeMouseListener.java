@@ -47,11 +47,12 @@ public class DragDropRealTimeMouseListener extends MouseAdapter {
 	                reallight.setImage(newImageIcon);
 	                for (Vehicle car : road.getCars()) {
 	                    if (car instanceof Vehicle) {
-	                 // ((Vehicle) car).speed = 30;  
-	                        ((Semi) car).speed = 50;  
-	                        ((Sports) car).speed = 100;  
-	                        ((SUV) car).speed = 80;  
-	                        System.out.println("DEVAM ET");
+	                    //    ((Vehicle) car).speed = 30;  
+//	                        ((Semi) car).speed = 50;  
+//	                        ((Sports) car).speed = 100;  
+//	                        ((SUV) car).speed = 80;  
+
+	                      //  System.out.println("DEVAM ET");
 	                    }
 	                }
 	                road.repaint();
@@ -66,7 +67,7 @@ public class DragDropRealTimeMouseListener extends MouseAdapter {
 	                for (Vehicle car : road.getCars()) {
 	                    if (car instanceof Vehicle) {
 	                        ((Vehicle) car).speed = 0;  
-	                        System.out.println("DUR");
+	                       // System.out.println("DUR");
 	                    }
 	                }
 	                road.repaint();

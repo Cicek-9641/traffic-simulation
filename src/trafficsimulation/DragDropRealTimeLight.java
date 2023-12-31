@@ -2,17 +2,8 @@ package trafficsimulation;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-
 import trafficsimulation.Road;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;

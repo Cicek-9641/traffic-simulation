@@ -35,7 +35,7 @@ class GasStationMouseListener extends MouseAdapter {
         if (gasStation.isDragging) {
             gasStation.x = e.getX();
             gasStation.y = e.getY();
-            road.repaint(); // Yeniden çizim yapılması için paneli güncelle
+            road.repaint(); 
         }
     }
 }
