@@ -70,7 +70,7 @@ public class Traffic implements Runnable, ActionListener {
 		west.add(sports);
 		
  
-		frame.setSize(1500, 500);
+		frame.setSize(1370, 700);
 		frame.setLayout(new BorderLayout());
 		frame.add(road, BorderLayout.CENTER);
 	 
@@ -117,9 +117,12 @@ public class Traffic implements Runnable, ActionListener {
 	                for (Vehicle car : road.getCars()) {
 	                    if (car instanceof Vehicle) {
 	                    //    ((Vehicle) car).speed = 30;  
-	                        ((Semi) car).speed = speedValue;  
+	                        ((Semi) car).speed = speedValue; 
+ 
 	                    //    ((Sports) car).speed = speedValue;  
-	                    //    ((SUV) car).speed = speedValue;  
+	                   //    ((SUV) car).speed = speedValue;  
+	            		
+
 
 	                    }
 	                }
@@ -150,15 +153,15 @@ public class Traffic implements Runnable, ActionListener {
 				startTime = System.currentTimeMillis();
 				Thread t = new Thread(this);
 				t.start();
-				   for (Vehicle car : road.getCars()) {
-	                    if (car instanceof Vehicle) {
-		              ((Vehicle) car).fuelLevel = 1000;  //Silinme sorunu için, ama burada olmaması gerek. Road.java daki 
-				                                //if (v.getFuelLevel() <= 33.3) {  bu kısımda artması gerekli
-	                                                        //goToNearestGasStation(v);
-	            }
-
-	                    }
-	                }
+//			     for (Vehicle car : road.getCars()) {
+//	                    if (car instanceof Vehicle) {
+//	                    //   
+//		              ((Vehicle) car).fuelLevel = 10000;  
+//  
+// 
+//	                    }
+//	                }
+				
  			}
 		}
 		if (event.getSource().equals(stop)) {
