@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 
 public class Road extends JPanel {
 
-    final int LANE_HEIGHT = 120;
+    final int LANE_HEIGHT = 150;
     final int ROAD_WIDTH = 1200;
 
     private ImageIcon redIcon = new ImageIcon("red.png");
