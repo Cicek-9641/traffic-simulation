@@ -40,8 +40,8 @@ public class Traffic implements Runnable, ActionListener {
 
     int carCount = 0;
     long startTime = 0;
-    int update = 120;
-    int serit = 240;
+    int update = 150;
+    int serit = 300;
 
     Timer timer;
     boolean isRed = true;
