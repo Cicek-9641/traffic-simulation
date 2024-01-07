@@ -55,9 +55,11 @@ public class Traffic implements Runnable, ActionListener {
         frame.setLayout(new BorderLayout());
         frame.add(road, BorderLayout.CENTER);
 
-        west.setLayout(new GridLayout(4, 1));
+        west.setLayout(new GridLayout(6, 1));
 
         semi.setBackground(Color.ORANGE);
+        add.setBackground(Color.PURPLE);
+        interest.setBackground(Color.BLUE);
         suv.setBackground(Color.PINK);
         sports.setBackground(Color.lightGray);
         start.setBackground(Color.green);
@@ -66,6 +68,8 @@ public class Traffic implements Runnable, ActionListener {
         west.add(semi);
         west.add(suv);
         west.add(sports);
+        west.add(add);
+        west.add(interest);
 
         south.setLayout(new GridLayout(1, 6));
 
