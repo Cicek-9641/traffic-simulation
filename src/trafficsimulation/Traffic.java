@@ -31,8 +31,8 @@ public class Traffic implements Runnable, ActionListener {
     JButton semi = new JButton("SEMI");
     JButton suv = new JButton("SUV");
     JButton sports = new JButton("Spor");
-    JButton add = new JButton("ADD");
-    JButton interest = new JButton("INTERIST");
+    JButton add = new JButton("Şerit arttır");
+    JButton interest = new JButton("Şerit azalt");
 
     Container west = new Container();
 
