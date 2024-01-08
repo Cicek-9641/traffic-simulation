@@ -12,11 +12,11 @@ public class Sports extends Vehicle {
 
     Image myImage;
 
-    public Sports(int newx, int newy, Road road) {
-        super(newx, newy, road);
+    public Sports(int newx, int newy, Road road,int speed) {
+        super(newx, newy, road,speed);
         width = 40;
         height = 20;
-        speed = 12;     
+      //  speed = 12;     
         fuelLevel = 100.0;
 
         try {

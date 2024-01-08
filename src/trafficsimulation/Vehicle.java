@@ -1,6 +1,7 @@
 package trafficsimulation;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
 
 public class Vehicle {
@@ -11,6 +12,12 @@ public class Vehicle {
     int height = 0;
     int speed = 0;
     double fuelLevel = 0;  // Başlangıçta aracın benzin miktarı
+    
+    // Yeni eklenen değişken
+    Image fuelGaugeImage;
+    
+    // Araçların başlangıç hızını saklamak için bir değişken ekleyin
+    private int initialSpeed;
 
     // Add a reference to the Road object to access gas stations
     Road road;
@@ -19,11 +26,19 @@ public class Vehicle {
         return new Rectangle(x, y, width, height);
     }
 
-    public Vehicle(int newx, int newy, Road road) {
+    public Vehicle(int newx, int newy, Road road,int speed) {
         x = newx;
         y = newy;
         this.road = road;
+         this.initialSpeed = speed;
+        this.speed = speed; // Başlangıç hızını ayarlayın
+  
 
+    }
+    
+    // Başlangıç hızını döndüren bir metot ekleyin
+    public int getInitialSpeed() {
+        return initialSpeed;
     }
 
     public void checkLowFuel() {
@@ -42,8 +57,9 @@ public class Vehicle {
             }
         }
     }
- public void paintMe(Graphics g) {
-         //araç çizimi
+
+    public void paintMe(Graphics g) {
+        //araç çizimi
     }
 
     public int getX() {
@@ -61,14 +77,15 @@ public class Vehicle {
     public int getY() {
         return y;
     }
-     public void setY(int newy) {
+
+    public void setY(int newy) {
         y = newy;
     }
 
     public int getWidth() {
         return width;
     }
-    
+
     public double getFuelLevel() {
         return fuelLevel;
     }
@@ -82,4 +99,13 @@ public class Vehicle {
         // Benzin istasyonuna gidip benzin dolumu yap
         fuelLevel = 100.0;  // Bu değeri ihtiyacınıza göre ayarlayabilirsiniz
     }
+
+  public void setSpeed(int newSpeed) {
+    speed = newSpeed;
 }
+  
+  
+  
+  // deneme yazısı
+}
+

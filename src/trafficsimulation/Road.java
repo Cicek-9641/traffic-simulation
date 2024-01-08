@@ -24,8 +24,8 @@ public class Road extends JPanel {
     private ImageIcon greenIcon = new ImageIcon("green.png");
     private ImageIcon surukleIcon = new ImageIcon("suruklered.png");
 
-    ArrayList<DragDropLevha> dragdropslevha = new ArrayList<DragDropLevha>();
-    ArrayList<DragDropRealTimeLight> dragdropsreallight = new ArrayList<DragDropRealTimeLight>();
+    ArrayList<plate> dragdropslevha = new ArrayList<plate>();
+    ArrayList<traffic_light> dragdropsreallight = new ArrayList<traffic_light>();
 
     ArrayList<GasStation> gasStations = new ArrayList<>();
     // Add a queue to store vehicles waiting at the gas station
@@ -39,16 +39,28 @@ public class Road extends JPanel {
 
     int carCount = 0;
 
-    public List<Vehicle> getCars() {
-        return cars;
+   // Add this method to your Road class
+public List<Vehicle> getCarsOnLane(int lightX, int lightY) {
+    List<Vehicle> carsOnLane = new ArrayList<>();
+
+    // Assuming LANE_HEIGHT is the distance between lanes
+    int laneIndex = lightY / LANE_HEIGHT;
+
+    for (Vehicle car : cars) {
+        // Check if the car is on the same lane as the traffic light
+        if (car.getY() / LANE_HEIGHT == laneIndex) {
+            carsOnLane.add(car);
+        }
     }
+
+    return carsOnLane;
+}
 
     private boolean isRedLight = true;
 
     public void saveCarCountToFile() {
         try {
-            BufferedWriter writer = new BufferedWriter(
-                    new FileWriter("trafikBilgi.txt", true));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("trafikBilgi.txt", true));
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String formattedDateTime = now.format(formatter);
@@ -65,10 +77,10 @@ public class Road extends JPanel {
 
         super();
 
-        DragDropLevha dragdroplevha = new DragDropLevha(300, LANE_HEIGHT * 3, this);
+        plate dragdroplevha = new plate(300, LANE_HEIGHT * 3, this);
         dragdropslevha.add(dragdroplevha);
 
-        DragDropRealTimeLight dragdropsreal = new DragDropRealTimeLight(500, LANE_HEIGHT * 3, this);
+        traffic_light dragdropsreal = new traffic_light(500, LANE_HEIGHT * 3, this);
         dragdropsreallight.add(dragdropsreal);
 
         // Örnek olarak bir benzin istasyonu ekleme
@@ -83,7 +95,7 @@ public class Road extends JPanel {
         cars.add(v);
     }
 
-    public void addDragDropLevha(DragDropLevha dragdropLevha) {
+    public void addDragDropLevha(plate dragdropLevha) {
         dragdropslevha.add(dragdropLevha);
     }
 
@@ -127,10 +139,10 @@ public class Road extends JPanel {
 
         for (int a = 0; a < cars.size(); a++) {
             Vehicle v = cars.get(a);
-            
+
             if (collision(v.getX() + v.getSpeed(), v.getY(), v) == false) {
                 v.setX(v.getX() + v.getSpeed());
-                
+
                 // Check if the vehicle moved beyond the road width
                 if (v.getX() > ROAD_WIDTH) {
                     if (collision(0, v.getY(), v) == false) {
@@ -201,11 +213,11 @@ public class Road extends JPanel {
 
     // Add a method to refill fuel for a vehicle in the queue
     public void refillFuelForNextVehicle() {
-      
+
         if (!gasStationQueue.isEmpty()) {
             Vehicle nextVehicle = gasStationQueue.poll();
             synchronized (nextVehicle) {
-                nextVehicle.refillFuel();             
+                nextVehicle.refillFuel();
                 nextVehicle.notify();
                 // Notify the waiting vehicle that refueling is complete
             }
@@ -231,7 +243,15 @@ public class Road extends JPanel {
         cars.clear();
     }
 
-    public void addToQueue(Vehicle aThis) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void addToQueue(Vehicle vehicle) {
+        synchronized (gasStationQueue) {
+            gasStationQueue.offer(vehicle); // Araçları benzin istasyonu kuyruğuna ekle
+        }
+    }
+
+
+
+    public ArrayList<Vehicle> getCars() {
+        return cars;
     }
 }

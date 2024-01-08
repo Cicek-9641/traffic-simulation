@@ -13,11 +13,11 @@ public class Semi extends Vehicle {
 
     Image myImage;
 
-    public Semi(int newx, int newy, Road road) {
-        super(newx, newy, road);
+    public Semi(int newx, int newy, Road road,int speed) {
+        super(newx, newy, road,speed);
         width = 120;
         height = 40;
-        speed = 5;
+       // speed = 5;
         fuelLevel = 90.0;
 
         try {

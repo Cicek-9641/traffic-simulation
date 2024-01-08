@@ -8,58 +8,51 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
- 
+public class traffic_light {
 
-public class DragDropRealTimeLight {
-	
-	int x;
+    int x;
     int y;
     boolean isDragging = false;
 
     Image myImage;
-	public boolean isGreen;
- 
-    public DragDropRealTimeLight(int x, int y, Road road) {
+    public boolean isGreen;
+
+    public traffic_light(int x, int y, Road road) {
         this.x = x;
         this.y = y;
 
         try {
-            myImage = ImageIO.read(new File("red.png")); 
+            myImage = ImageIO.read(new File("red.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
-        DragDropRealTimeMouseListener mouseListener = new DragDropRealTimeMouseListener(this, road);
+        traffic_lightMouseListener mouseListener = new traffic_lightMouseListener(this, road);
         road.addMouseListener(mouseListener);
         road.addMouseMotionListener(mouseListener);
 
     }
- 
-  
- 
-    public void setImage(ImageIcon newImageIcon) throws IOException {
-       
-        	isGreen= true;
-            myImage = ImageIO.read(new File("green.png"));
-     		}
 
- 
+    public void setImage(ImageIcon newImageIcon) throws IOException {
+
+        isGreen = true;
+        myImage = ImageIO.read(new File("green.png"));
+    }
+
     public void setImagee(ImageIcon newImageIcon) {
         try {
-        	isGreen= false;
+            isGreen = false;
 
             myImage = ImageIO.read(new File("red.png"));
- 
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
     }
-    
-    public void paintMe(Graphics g) {  
+
+    public void paintMe(Graphics g) {
         g.drawImage(myImage, x, y, null);
     }
-  //dkjfhdldvh
-}
 
- 
+}

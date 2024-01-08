@@ -15,7 +15,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class Traffic implements Runnable, ActionListener {
-    //AAAA
 
     JFrame frame = new JFrame("NESNE");
 
@@ -31,8 +30,6 @@ public class Traffic implements Runnable, ActionListener {
     JButton semi = new JButton("SEMI");
     JButton suv = new JButton("SUV");
     JButton sports = new JButton("Spor");
-    JButton add = new JButton("Şerit arttır");
-    JButton interest = new JButton("Şerit azalt");
 
     Container west = new Container();
 
@@ -40,8 +37,6 @@ public class Traffic implements Runnable, ActionListener {
 
     int carCount = 0;
     long startTime = 0;
-    int update = 150;
-    int serit = 300;
 
     Timer timer;
     boolean isRed = true;
@@ -55,11 +50,9 @@ public class Traffic implements Runnable, ActionListener {
         frame.setLayout(new BorderLayout());
         frame.add(road, BorderLayout.CENTER);
 
-        west.setLayout(new GridLayout(6, 2));
+        west.setLayout(new GridLayout(4, 1));
 
         semi.setBackground(Color.ORANGE);
-        add.setBackground(Color.MAGENTA);
-        interest.setBackground(Color.BLUE);
         suv.setBackground(Color.PINK);
         sports.setBackground(Color.lightGray);
         start.setBackground(Color.green);
@@ -68,8 +61,6 @@ public class Traffic implements Runnable, ActionListener {
         west.add(semi);
         west.add(suv);
         west.add(sports);
-        west.add(add);
-        west.add(interest);
 
         south.setLayout(new GridLayout(1, 6));
 
@@ -89,7 +80,7 @@ public class Traffic implements Runnable, ActionListener {
         south.add(new JLabel("Hız Artırma: "));
         south.add(speedSlider);
 
-        west.setLayout(new GridLayout(6, 1));
+        west.setLayout(new GridLayout(3, 1));
 
         west.add(semi);
         semi.addActionListener(this);
@@ -100,12 +91,6 @@ public class Traffic implements Runnable, ActionListener {
         west.add(sports);
         sports.addActionListener(this);
 
-        west.add(add);
-        add.addActionListener(this);
-        
-        west.add(interest);
-        interest.addActionListener(this);
-        
         frame.add(south, BorderLayout.SOUTH);
         frame.add(west, BorderLayout.WEST);
 
@@ -115,21 +100,16 @@ public class Traffic implements Runnable, ActionListener {
         frame.repaint();
 
         speedSlider.addChangeListener(new ChangeListener() {
-
             @Override
             public void stateChanged(ChangeEvent e) {
                 int speedValue = speedSlider.getValue();
                 speedLabel.setText("Hız: " + speedValue);
+
+                // Araçların başlangıç hızlarını alarak güncelleyin
                 for (Vehicle car : road.getCars()) {
-                    if (car instanceof Vehicle) {
-                        //   ((Vehicle) car).speed = 30;  
-                        //   ((Semi) car).speed = speedValue; 
-
-                        //    ((Sports) car).speed = speedValue;  
-                        //   ((SUV) car).speed = speedValue;  
-                    }
+                    // Araçların başlangıç hızlarını alarak güncelleyin
+                    car.setSpeed(speedValue);
                 }
-
             }
         });
     }
@@ -175,22 +155,16 @@ public class Traffic implements Runnable, ActionListener {
         if (event.getSource().equals(stop)) {
             running = false;
         }
-         if (event.getSource().equals(add)){
-            serit = serit +update;
-        }
-        if (event.getSource().equals(interest)){
-            serit = serit - update;
-        }
 
         if (event.getSource().equals(semi)) {
 
             int slowDownAmount = 2;
 
-            Semi semi = new Semi(0, 30, road);
+            Semi semi = new Semi(0, 30, road, 8);
             road.addCar(semi);
 
             for (int x = 0; x < road.ROAD_WIDTH; x = x + 20) {
-                for (int y = 40; y < serit; y = y + 150) {
+                for (int y = 40; y < 600; y = y + 150) {
                     semi.setX(x);
                     semi.setY(y);
                     if (road.collision(x, y, semi) == false) {
@@ -204,10 +178,10 @@ public class Traffic implements Runnable, ActionListener {
         }
 
         if (event.getSource().equals(suv)) {
-            SUV suv = new SUV(0, 30, road);
+            SUV suv = new SUV(0, 30, road, 8);
             road.addCar(suv);
             for (int x = 0; x < road.ROAD_WIDTH; x = x + 20) {
-                for (int y = 40; y < serit; y = y + 150) {
+                for (int y = 40; y < 600; y = y + 150) {
                     suv.setX(x);
                     suv.setY(y);
                     if (road.collision(x, y, suv) == false) {
@@ -221,11 +195,11 @@ public class Traffic implements Runnable, ActionListener {
         }
 
         if (event.getSource().equals(sports)) {
-            Sports sports = new Sports(0, 30, road);
+            Sports sports = new Sports(0, 30, road, 12);
             road.addCar(sports);
 
             for (int x = 0; x < road.ROAD_WIDTH; x = x + 20) {
-                for (int y = 40; y < serit; y = y + 150) {
+                for (int y = 40; y < 600; y = y + 150) {
                     sports.setX(x);
                     sports.setY(y);
                     if (road.collision(x, y, sports) == false) {
