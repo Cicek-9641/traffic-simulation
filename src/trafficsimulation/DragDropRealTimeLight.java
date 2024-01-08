@@ -59,7 +59,7 @@ public class DragDropRealTimeLight {
     public void paintMe(Graphics g) {  
         g.drawImage(myImage, x, y, null);
     }
-  
+  //dkjfhdldvh
 }
 
  
