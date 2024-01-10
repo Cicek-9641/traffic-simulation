@@ -23,7 +23,7 @@ public class Traffic implements Runnable, ActionListener {
     JButton start = new JButton("Baslat");
     JButton stop = new JButton("Duraklat");
     JLabel throughput = new JLabel("Verim:0");
-    JButton restart = new JButton("restart");
+    JButton restart = new JButton("Restart");
 
     Container south = new Container();
 
@@ -72,6 +72,8 @@ public class Traffic implements Runnable, ActionListener {
 
         south.add(restart);   // restart butonu
         restart.addActionListener(this);
+        restart.setBackground(Color.orange);
+
 
         south.add(throughput);
 
