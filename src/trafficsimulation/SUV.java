@@ -39,9 +39,16 @@ public class SUV extends Vehicle {
 
     }
 
-    public void paintMe(Graphics g) {
-
+   public void paintMe(Graphics g) {
         g.drawImage(myImage, x, y, null);
+
+        int barWidth = (int) (width * (fuelLevel / 100));  
+        g.setColor(Color.GREEN);  
+        g.fillRect(x, y + height, barWidth, 5); 
+
+        
+        g.setColor(Color.BLACK);
+        g.drawRect(x, y + height, width, 5);
     }
 
 }
