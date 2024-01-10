@@ -80,5 +80,9 @@ public class traffic_lightMouseListener extends MouseAdapter {
             road.repaint();
         }
     }
+      @Override
+    public void mouseReleased(MouseEvent e) {
+        reallight.isDragging = false;
+    }
 
 }
