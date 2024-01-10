@@ -13,6 +13,9 @@ public class Vehicle {
     int speed = 0;
     double fuelLevel = 0;  // Başlangıçta aracın benzin miktarı
     
+    private int cezaPuani = 0; 
+    private boolean allowedToPass = true;  // Geçiş iznini saklamak için değişken
+    
     // Yeni eklenen değişken
     Image fuelGaugeImage;
     
@@ -106,6 +109,20 @@ public class Vehicle {
   
   
   
-  // deneme yazısı
+// Kırmızı ışıkta geçen araçlara ceza puanı ekleyen metot
+    public void addPenaltyPoints(int cezaMiktari) {
+        cezaPuani += cezaMiktari;
+
+        // Örneğin: Başka bir sınıfta veya listeye ceza bilgilerini kaydetmek gibi
+        System.out.println("Ceza puanı eklendi: " + cezaMiktari + " - Toplam Ceza Puanı: " + cezaPuani);
+    }
+
+    // Araçların yeşil ışıkta geçip geçemeyeceğini belirleyen metot
+    public void setAllowedToPass(boolean allowed) {
+        allowedToPass = allowed;
+
+        // Burada aracın geçiş iznini set etmek için kodu ekleyebilirsiniz
+        System.out.println("Geçiş izni güncellendi: " + allowedToPass);
+    }
 }
 

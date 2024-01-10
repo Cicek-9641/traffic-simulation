@@ -20,7 +20,7 @@ public class SUV extends Vehicle {
         fuelLevel = 80.0;
 
         try {
-            myImage = ImageIO.read(new File("araba.jpg"));
+            myImage = ImageIO.read(new File("araba.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }

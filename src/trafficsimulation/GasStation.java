@@ -21,7 +21,7 @@ public class GasStation {
         this.y = y;
 
         try {
-            myImage = ImageIO.read(new File("benzinlik_1.jpg"));
+            myImage = ImageIO.read(new File("benzinlik_1.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }

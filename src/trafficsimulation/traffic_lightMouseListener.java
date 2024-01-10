@@ -54,10 +54,18 @@ public class traffic_lightMouseListener extends MouseAdapter {
             } else {
                 ImageIcon newImageIcon = new ImageIcon("red.png");
                 reallight.setImagee(newImageIcon);
+
+                // Kırmızı ışık sırasında belirli bir sayıda aracın geçmesi durumunda ceza işlemlerini uygula
+                if (reallight.getVehiclesOnRed().size() >= 3) {
+                    Ceza ceza = new Ceza("Kırmızı Işıktan Geçme", 500);
+                    ceza.applyPenalty(reallight.getVehiclesOnRed());
+                }
+
                 for (Vehicle car : road.getCarsOnLane(reallight.x, reallight.y)) {
                     car.setSpeed(0);
                 }
                 road.repaint();
+                reallight.clearVehiclesOnRed();
                 reallight.isGreen = false;
             }
         }

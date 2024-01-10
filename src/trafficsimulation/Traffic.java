@@ -16,7 +16,7 @@ import javax.swing.event.ChangeListener;
 
 public class Traffic implements Runnable, ActionListener {
 
-    JFrame frame = new JFrame("NESNE");
+    JFrame frame = new JFrame("NESNE PROJE ÖDEVİ - TRAFİK SİMÜLASYONU");
 
     Road road = new Road();
 
@@ -27,9 +27,9 @@ public class Traffic implements Runnable, ActionListener {
 
     Container south = new Container();
 
-    JButton semi = new JButton("SEMI");
-    JButton suv = new JButton("SUV");
-    JButton sports = new JButton("Spor");
+    JButton semi = new JButton("Kamyon");
+    JButton suv = new JButton("Araba1");
+    JButton sports = new JButton("Araba2");
 
     Container west = new Container();
 

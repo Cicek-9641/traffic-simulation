@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class Ceza {
 
@@ -63,5 +64,14 @@ public class Ceza {
 
     public void setCezaMiktari(int cezaMiktari) {
         this.cezaMiktari = cezaMiktari;
+    }
+
+    // Ceza işlemlerini uygular
+    public void applyPenalty(List<Vehicle> vehiclesOnRed) {
+        for (Vehicle car : vehiclesOnRed) {
+            car.addPenaltyPoints(cezaMiktari);
+            car.setAllowedToPass(false);
+        }
+        yazdir();
     }
 }

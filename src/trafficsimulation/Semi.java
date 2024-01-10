@@ -21,7 +21,7 @@ public class Semi extends Vehicle {
         fuelLevel = 90.0;
 
         try {
-            myImage = ImageIO.read(new File("kamyon.jpg"));
+            myImage = ImageIO.read(new File("kamyon.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }

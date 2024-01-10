@@ -20,7 +20,7 @@ public class Sports extends Vehicle {
         fuelLevel = 100.0;
 
         try {
-            myImage = ImageIO.read(new File("car.png"));
+            myImage = ImageIO.read(new File("carr.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
