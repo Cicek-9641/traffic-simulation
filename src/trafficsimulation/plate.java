@@ -20,7 +20,7 @@ public class plate {
         this.y = y;
 
         try {
-            myImage = ImageIO.read(new File("levha.jpg"));
+            myImage = ImageIO.read(new File("levha.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -31,14 +31,7 @@ public class plate {
 
     }
 
-    public void setImage(String imagePath) {
-        try {
-            myImage = ImageIO.read(new File("levha.jpg"));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-    }
+ 
 
     public void paintMe(Graphics g) {
         g.drawImage(myImage, x, y, null);
