@@ -29,14 +29,14 @@ public class plateMouseListener extends MouseAdapter {
     public void mouseReleased(MouseEvent e) {
         dragdroplevha.isDragging = false;
        
- //       for (Vehicle car : road.getCars()) {
-//            if (car instanceof Vehicle) {
-//                ((Vehicle) car).speed = 30;
-//
-//            }
-       // }
+        for (Vehicle car : road.getCars()) {
+            if (car instanceof Vehicle) {
+                ((Vehicle) car).speed = 30;
 
-  //      road.repaint();
+             }
+        }
+
+        road.repaint();
     }
 
     @Override
