@@ -31,10 +31,15 @@ public class Sports extends Vehicle {
     }
 
     public void paintMe(Graphics g) {
-//		g.setColor(Color.RED);
-//		g.fillRect(x, y, width, height);
         g.drawImage(myImage, x, y, null);
 
+        int barWidth = (int) (width * (fuelLevel / 100));  
+        g.setColor(Color.YELLOW);  
+        g.fillRect(x, y + height, barWidth, 5); 
+
+        
+        g.setColor(Color.BLACK);
+        g.drawRect(x, y + height, width, 5);
     }
 
 }
