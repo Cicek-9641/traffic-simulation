@@ -22,8 +22,7 @@ public class Road extends JPanel {
 
     private ImageIcon redIcon = new ImageIcon("red.png");
     private ImageIcon greenIcon = new ImageIcon("green.png");
-    private ImageIcon surukleIcon = new ImageIcon("suruklered.png");
-
+ 
     ArrayList<plate> dragdropslevha = new ArrayList<plate>();
     ArrayList<traffic_light> dragdropsreallight = new ArrayList<traffic_light>();
 
@@ -33,8 +32,7 @@ public class Road extends JPanel {
 
     ArrayList<Vehicle> cars = new ArrayList<Vehicle>();
 
-    private JButton surukleIconn = new JButton(surukleIcon);
-
+ 
     private JButton trafficLightButton = new JButton(redIcon);
 
     int carCount = 0;
