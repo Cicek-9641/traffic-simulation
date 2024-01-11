@@ -74,20 +74,19 @@ public List<Vehicle> getCarsOnLane(int lightX, int lightY) {
             e.printStackTrace();
         }
     }
-    public void turkaydet(String tip)  {
-  	  
+    public void turkaydet(String tip) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("MTV.txt", true));
-//           
-//            writer.write(tip+vehicle.getPlaka());
+
             for (Vehicle vehicle : getCars()) {
-                writer.write(tip+","+vehicle.getPlaka() +"," + vehicle.getSpeed());
-                
-                writer.newLine();
-             }
-            //writer.newLine();
+                if (vehicle.getType().equals(tip)) {
+                    writer.write(tip + "," + vehicle.getPlaka() + "," + vehicle.getSpeed());
+                    writer.newLine();
+                }
+            }
+
             writer.close();
-            System.out.println("Trafikteki arac turu mtv.txt dosyasina kaydediliyor.");
+            System.out.println("Trafikteki araç turu MTV.txt dosyasına kaydedildi.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -97,8 +96,6 @@ public List<Vehicle> getCarsOnLane(int lightX, int lightY) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-       // dosyayaYeniSutunEkle("MTV.txt","MTV.txt");
     }
  
     public Road() {
