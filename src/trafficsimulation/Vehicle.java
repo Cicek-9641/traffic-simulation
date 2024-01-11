@@ -5,24 +5,31 @@ import java.awt.Image;
 import java.awt.Rectangle;
 
 public class Vehicle {
-
+	  private static int nextPlakaNumber = 1; 
+	    public String plaka;
     int x;
     int y;
     int width = 0;
     int height = 0;
     int speed = 0;
-    double fuelLevel = 0;  // Başlangıçta aracın benzin miktarı
+    double fuelLevel = 0;  
     
     private int cezaPuani = 0; 
-    private boolean allowedToPass = true;  // Geçiş iznini saklamak için değişken
-    
-    // Yeni eklenen değişken
+    private boolean allowedToPass = true; 
+     public String getPlaka() {
+        return plaka;
+    }
+
+    public void setPlaka(String yeniPlaka) {
+        this.plaka = yeniPlaka;
+    }
+    public void showPlaka() {
+        System.out.println("Araç Plakası: " + plaka);
+    }
     Image fuelGaugeImage;
     
-    // Araçların başlangıç hızını saklamak için bir değişken ekleyin
     private int initialSpeed;
 
-    // Add a reference to the Road object to access gas stations
     Road road;
 
     public Rectangle getBounds() {
@@ -34,12 +41,12 @@ public class Vehicle {
         y = newy;
         this.road = road;
          this.initialSpeed = speed;
-        this.speed = speed; // Başlangıç hızını ayarlayın
-  
+        this.speed = speed; 
+        this.plaka = "SIM-PR" + nextPlakaNumber;
+        nextPlakaNumber++;
 
     }
     
-    // Başlangıç hızını döndüren bir metot ekleyin
     public int getInitialSpeed() {
         return initialSpeed;
     }
@@ -51,10 +58,10 @@ public class Vehicle {
     }
 
     public void goToGasStationAndWait(Road road) {
-        road.addToQueue(this); // Add the vehicle to the gas station queue
+        road.addToQueue(this); 
         synchronized (this) {
             try {
-                wait(); // Wait until the vehicle gets refueled
+                wait(); 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -62,9 +69,9 @@ public class Vehicle {
     }
 
     public void paintMe(Graphics g) {
-        //araç çizimi
+       
+        g.drawString("Plaka: " + plaka, x, y - 10);  
     }
-
     public int getX() {
         return x;
     }
@@ -125,4 +132,3 @@ public class Vehicle {
         System.out.println("Geçiş izni güncellendi: " + allowedToPass);
     }
 }
-
