@@ -27,6 +27,12 @@ public class Semi extends Vehicle {
         }
     }
 
+//    public void paintMe(Graphics g) {
+//        //g.setColor(Color.BLUE);
+//        //g.fillRect(x, y, width, height);
+//        g.drawImage(myImage, x, y, null);
+//
+//    }
     public void paintMe(Graphics g) {
         g.drawImage(myImage, x, y, null);
 
@@ -37,8 +43,9 @@ public class Semi extends Vehicle {
         
         g.setColor(Color.BLACK);
         g.drawRect(x, y + height, width, 5);
-    }
+        g.drawString("" + plaka, x, y - 10);
 
+    }
     public void setSpeed(int newSpeed) {
         speed = newSpeed;
     }
