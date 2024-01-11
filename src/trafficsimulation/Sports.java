@@ -29,17 +29,32 @@ public class Sports extends Vehicle {
     public void setSpeed(int newSpeed) {
         speed = newSpeed;
     }
-
+    
     public void paintMe(Graphics g) {
-        g.drawImage(myImage, x, y, null);
+    	
+         g.drawImage(myImage, x, y, null);
 
-        int barWidth = (int) (width * (fuelLevel / 100));  
-        g.setColor(Color.YELLOW);  
-        g.fillRect(x, y + height, barWidth, 5); 
+         g.setColor(Color.WHITE);
+         g.drawString("" + plaka, x, y - 10);
 
-        
-        g.setColor(Color.BLACK);
-        g.drawRect(x, y + height, width, 5);
+         int barWidth = (int) (width * (fuelLevel / 100));
+         g.setColor(Color.YELLOW);
+         g.fillRect(x, y + height, barWidth, 5);
+
+         g.setColor(Color.BLACK);
+         g.drawRect(x, y + height, width, 5);
     }
+
+//    public void paintMe(Graphics g) {
+//        g.drawImage(myImage, x, y, null);
+//
+//        int barWidth = (int) (width * (fuelLevel / 100));  
+//        g.setColor(Color.YELLOW);  
+//        g.fillRect(x, y + height, barWidth, 5); 
+//
+//        
+//        g.setColor(Color.BLACK);
+//        g.drawRect(x, y + height, width, 5);
+//    }
 
 }
