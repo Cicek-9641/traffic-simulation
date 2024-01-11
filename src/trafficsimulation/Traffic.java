@@ -156,7 +156,7 @@ public class Traffic implements Runnable, ActionListener {
                 startTime = System.currentTimeMillis();
                 Thread t = new Thread(this);
                 t.start();
-                  writeVehicleInfoToFile();
+                 
 
 
             }
@@ -245,20 +245,6 @@ public class Traffic implements Runnable, ActionListener {
         }
     }
     
-     public void writeVehicleInfoToFile() {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("vergi.txt", true));
-
-            for (Vehicle vehicle : road.getCars()) {
-                writer.write("Plaka: " + vehicle.getPlaka() + " - Hız: " + vehicle.getSpeed());
-                writer.newLine();
-            }
-
-            writer.close();
-            System.out.println("Araç bilgileri vergi.txt dosyasına kaydedildi.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+ 
 
 }
