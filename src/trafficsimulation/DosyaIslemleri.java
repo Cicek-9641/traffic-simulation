@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class DosyaIslemleri {
-////
 	public void createNewFile(String path) {
 		
 	    File file = new File(path);

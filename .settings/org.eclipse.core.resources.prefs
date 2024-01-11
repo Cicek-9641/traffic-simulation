@@ -1,10 +1,10 @@
 eclipse.preferences.version=1
-encoding//src/trafficsimulation/DragAndDropIcon.java=UTF-8
-encoding//src/trafficsimulation/DragDropLevhaMouseListener.java=UTF-8
-encoding//src/trafficsimulation/DragDropRealTimeLight.java=UTF-8
-encoding//src/trafficsimulation/DragDropRealTimeMouseListener.java=UTF-8
-encoding//src/trafficsimulation/Levha.java=UTF-8
+encoding//src/trafficsimulation/Ceza.java=UTF-8
+encoding//src/trafficsimulation/Kamyon.java=UTF-8
 encoding//src/trafficsimulation/Main.java=UTF-8
+encoding//src/trafficsimulation/Otomobil.java=UTF-8
 encoding//src/trafficsimulation/Road.java=UTF-8
 encoding//src/trafficsimulation/Traffic.java=UTF-8
 encoding//src/trafficsimulation/Vehicle.java=UTF-8
+encoding//src/trafficsimulation/deneme.java=UTF-8
+encoding//src/trafficsimulation/yeni.java=UTF-8
