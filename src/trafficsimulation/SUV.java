@@ -8,11 +8,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class AraziAraci extends Vehicle {
+public class SUV extends Vehicle {
 
     Image myImage;
 
-    public AraziAraci(int newx, int newy, Road road, int speed) {
+    public SUV(int newx, int newy, Road road, int speed) {
         super(newx, newy, road,speed);
         width = 60;
         height = 30;
