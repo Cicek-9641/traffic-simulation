@@ -3,12 +3,12 @@ package trafficsimulation;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class plateMouseListener extends MouseAdapter {
+public class LevhaMouseListener extends MouseAdapter {
 
-    private plate dragdroplevha;
+    private Levha dragdroplevha;
     private Road road;
 
-    public plateMouseListener(plate dragdroplevha, Road road) {
+    public LevhaMouseListener(Levha dragdroplevha, Road road) {
         this.dragdroplevha = dragdroplevha;
         this.road = road;
     }

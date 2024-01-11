@@ -27,9 +27,10 @@ public class Traffic implements Runnable, ActionListener {
 
     Container south = new Container();
 
-    JButton semi = new JButton("Kamyon");
-    JButton suv = new JButton("Araba1");
-    JButton sports = new JButton("Araba2");
+    JButton kamyon = new JButton("Kamyon");
+    JButton araziA = new JButton("Arazi Aracı");
+    JButton otomobil = new JButton("Otomobil");
+
     JButton add = new JButton("Şerit arttır");
     JButton interest = new JButton("Şerit azalt");
 
@@ -56,18 +57,20 @@ public class Traffic implements Runnable, ActionListener {
 
         west.setLayout(new GridLayout(5, 1));
 
-        semi.setBackground(Color.ORANGE);
-        add.setBackground(Color.MAGENTA);
-        interest.setBackground(Color.BLUE);
-        suv.setBackground(Color.PINK);
-        sports.setBackground(Color.lightGray);
+        kamyon.setBackground(Color.ORANGE);
+        araziA.setBackground(Color.PINK);
+        otomobil.setBackground(Color.lightGray);
         start.setBackground(Color.green);
         stop.setBackground(Color.red);
+        
+        add.setBackground(Color.MAGENTA);
+        interest.setBackground(Color.BLUE);
 
-        west.add(semi);
-        west.add(suv);
-        west.add(sports);
-        west.add(add); 
+        west.add(kamyon);
+        west.add(araziA);
+        west.add(otomobil);
+        
+        west.add(add);
         west.add(interest);
 
         south.setLayout(new GridLayout(1, 6));
@@ -78,33 +81,33 @@ public class Traffic implements Runnable, ActionListener {
         south.add(stop);
         stop.addActionListener(this);
 
-        south.add(restart);   // restart butonu
+        south.add(restart);  
         restart.addActionListener(this);
         restart.setBackground(Color.orange);
 
-
         south.add(throughput);
-
         south.add(speedLabel);
 
         south.add(new JLabel("Hız Artırma: "));
         south.add(speedSlider);
 
         west.setLayout(new GridLayout(5, 1));
+       
+
+        west.add(kamyon);
+        kamyon.addActionListener(this);
+
+        west.add(araziA);
+        araziA.addActionListener(this);
+
+        west.add(otomobil);
+        otomobil.addActionListener(this);
+
         west.add(add);
         add.addActionListener(this);
-
+        
         west.add(interest);
         interest.addActionListener(this);
-
-        west.add(semi);
-        semi.addActionListener(this);
-
-        west.add(suv);
-        suv.addActionListener(this);
-
-        west.add(sports);
-        sports.addActionListener(this);
 
         frame.add(south, BorderLayout.SOUTH);
         frame.add(west, BorderLayout.WEST);
@@ -142,23 +145,16 @@ public class Traffic implements Runnable, ActionListener {
     public void actionPerformed(ActionEvent event) {
 
         int speedValue = speedSlider.getValue();
-        System.out.println(speedValue);
+       // System.out.println(speedValue);
 
         if (event.getSource().equals(start)) {
             if (running == false) {
                 running = true;
-                //	road.resetCarCount();
+           
                 startTime = System.currentTimeMillis();
                 Thread t = new Thread(this);
                 t.start();
-//			     for (Vehicle car : road.getCars()) {
-//	                    if (car instanceof Vehicle) {
-//	                    //   
-//		              ((Vehicle) car).fuelLevel = 10000;  
-//  
-// 
-//	                    }
-//	                }
+
 
             }
         }
@@ -170,25 +166,22 @@ public class Traffic implements Runnable, ActionListener {
         if (event.getSource().equals(stop)) {
             running = false;
         }
-        if (event.getSource().equals(add)){
-            serit = serit +update;
+        if (event.getSource().equals(add)) {
+            serit = serit + update;
         }
-        if (event.getSource().equals(interest)){
+        if (event.getSource().equals(interest)) {
             serit = serit - update;
         }
 
-        if (event.getSource().equals(semi)) {
-
-            int slowDownAmount = 2;
-
-            Semi semi = new Semi(0, 30, road, 8);
-            road.addCar(semi);
+        if (event.getSource().equals(kamyon)) {
+            Kamyon kamyon = new Kamyon(0, 30, road, 45);
+            road.addCar(kamyon);
 
             for (int x = 0; x < road.ROAD_WIDTH; x = x + 20) {
                 for (int y = 40; y < serit; y = y + 150) {
-                    semi.setX(x);
-                    semi.setY(y);
-                    if (road.collision(x, y, semi) == false) {
+                    kamyon.setX(x);
+                    kamyon.setY(y);
+                    if (road.collision(x, y, kamyon) == false) {
                         frame.repaint();
                         return;
 
@@ -198,14 +191,14 @@ public class Traffic implements Runnable, ActionListener {
             }
         }
 
-        if (event.getSource().equals(suv)) {
-            SUV suv = new SUV(0, 30, road, 8);
-            road.addCar(suv);
+        if (event.getSource().equals(araziA)) {
+            AraziAraci araziA = new AraziAraci(0, 30, road, 70);
+            road.addCar(araziA);
             for (int x = 0; x < road.ROAD_WIDTH; x = x + 20) {
                 for (int y = 40; y < serit; y = y + 150) {
-                    suv.setX(x);
-                    suv.setY(y);
-                    if (road.collision(x, y, suv) == false) {
+                    araziA.setX(x);
+                    araziA.setY(y);
+                    if (road.collision(x, y, araziA) == false) {
                         frame.repaint();
                         return;
 
@@ -215,15 +208,15 @@ public class Traffic implements Runnable, ActionListener {
             }
         }
 
-        if (event.getSource().equals(sports)) {
-            Sports sports = new Sports(0, 30, road, 12);
-            road.addCar(sports);
+        if (event.getSource().equals(otomobil)) {
+            Otomobil otomobil = new Otomobil(0, 30, road, 80);
+            road.addCar(otomobil);
 
             for (int x = 0; x < road.ROAD_WIDTH; x = x + 20) {
                 for (int y = 40; y < serit; y = y + 150) {
-                    sports.setX(x);
-                    sports.setY(y);
-                    if (road.collision(x, y, sports) == false) {
+                    otomobil.setX(x);
+                    otomobil.setY(y);
+                    if (road.collision(x, y, otomobil) == false) {
                         frame.repaint();
                         return;
                     }

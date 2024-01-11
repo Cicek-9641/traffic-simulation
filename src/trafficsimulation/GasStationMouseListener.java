@@ -4,6 +4,7 @@ package trafficsimulation;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+
 class GasStationMouseListener extends MouseAdapter {
     
     private GasStation gasStation;
@@ -28,6 +29,7 @@ class GasStationMouseListener extends MouseAdapter {
     @Override
     public void mouseReleased(MouseEvent e) {
         gasStation.isDragging = false;
+        
     }
 
     @Override

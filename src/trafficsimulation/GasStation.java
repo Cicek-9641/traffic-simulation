@@ -1,7 +1,5 @@
-// GasStation.java
 package trafficsimulation;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -13,7 +11,6 @@ public class GasStation {
     int x;
     int y;
     boolean isDragging = false;
-
     Image myImage;
 
     public GasStation(int x, int y, Road road) {
@@ -43,9 +40,7 @@ public class GasStation {
     }
 
     
-    public void paintMe(Graphics g) {
-        // g.setColor(Color.ORANGE);
-        // g.fillRect(x, y, 50, 30);
+    public void paintMe(Graphics g) {       
         g.drawImage(myImage, x, y, null);
         
     }

@@ -11,6 +11,7 @@ public class Main {
 		
 		DosyaIslemleri file = new DosyaIslemleri();
 		file.createNewFile("trafikDurumu.txt");
+                file.createNewFile("caza.txt");
 		
 		new Traffic();
 		

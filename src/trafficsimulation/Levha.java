@@ -1,22 +1,44 @@
 package trafficsimulation;
 
-	import javax.swing.*;
-	import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import trafficsimulation.Road;
 
-	public class Levha extends JPanel {
-	    private ImageIcon icon;
+public class Levha {
 
-	    public Levha(ImageIcon icon) {
-	        this.icon = icon;
-	        setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
-	        setBorder(BorderFactory.createLineBorder(Color.RED)); 
-	    }
+    int x;
+    int y;
+    boolean isDragging = false;
+    Image myImage;
 
-	    @Override
-	    protected void paintComponent(Graphics g) {
-	        super.paintComponent(g);
-	        if (icon != null) {
-	            g.drawImage(icon.getImage(), 0, 0, this);
-	        }
-	    }
-	}
+    public Levha(int x, int y, Road road) {
+        this.x = x;
+        this.y = y;
+
+        try {
+            myImage = ImageIO.read(new File("levha.png"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        LevhaMouseListener mouseListener = new LevhaMouseListener(this, road);
+        road.addMouseListener(mouseListener);
+        road.addMouseMotionListener(mouseListener);
+
+    }
+
+ 
+
+    public void paintMe(Graphics g) {
+        g.drawImage(myImage, x, y, null);
+    }
+
+    Rectangle getBounds() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+}

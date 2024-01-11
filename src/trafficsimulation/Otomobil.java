@@ -8,15 +8,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Sports extends Vehicle {
+public class Otomobil extends Vehicle {
 
     Image myImage;
 
-    public Sports(int newx, int newy, Road road,int speed) {
+    public Otomobil(int newx, int newy, Road road,int speed) {
         super(newx, newy, road,speed);
         width = 40;
-        height = 20;
-      //  speed = 12;     
+        height = 20;       
         fuelLevel = 100.0;
 
         try {
