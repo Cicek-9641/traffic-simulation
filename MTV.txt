@@ -1,6 +1,3 @@
 Kamyon,SIM-PR1,70
-Arazi,SIM-PR1,70
 Arazi,SIM-PR2,80
-Otomobil,SIM-PR1,70
-Otomobil,SIM-PR2,80
 Otomobil,SIM-PR3,50
