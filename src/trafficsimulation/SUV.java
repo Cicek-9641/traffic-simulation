@@ -8,11 +8,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class SUV extends Vehicle {
+public class AraziAraci extends Vehicle {
 
     Image myImage;
 
-    public SUV(int newx, int newy, Road road, int speed) {
+    public AraziAraci(int newx, int newy, Road road, int speed) {
         super(newx, newy, road,speed);
         width = 60;
         height = 30;
@@ -39,7 +39,7 @@ public class SUV extends Vehicle {
 
     }
 
-   public void paintMe(Graphics g) {
+    public void paintMe(Graphics g) {
         g.drawImage(myImage, x, y, null);
 
         int barWidth = (int) (width * (fuelLevel / 100));  
@@ -49,6 +49,8 @@ public class SUV extends Vehicle {
         
         g.setColor(Color.BLACK);
         g.drawRect(x, y + height, width, 5);
+        g.drawString("" + plaka, x, y - 10);
+
     }
 
 }
