@@ -1,9 +1,6 @@
-Plaka: SIM-PR1 - Hız: 80
-Plaka: SIM-PR2 - Hız: 70
-Plaka: SIM-PR3 - Hız: 45
-Plaka: SIM-PR4 - Hız: 80
-Plaka: SIM-PR5 - Hız: 80
-Plaka: SIM-PR7 - Hız: 30
-Plaka: SIM-PR8 - Hız: 30
-Plaka: SIM-PR9 - Hız: 30
-Plaka: SIM-PR10 - Hız: 30
+Kamyon,SIM-PR1,70,5000.0
+Arazi,SIM-PR1,70,6000.0
+Arazi,SIM-PR2,80,6000.0
+Otomobil,SIM-PR1,70,4000.0
+Otomobil,SIM-PR2,80,4000.0
+Otomobil,SIM-PR3,50,4000.0
