@@ -1,11 +1,10 @@
 package trafficsimulation;
 
-import java.awt.event.ActionListener;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
+
 
 import javax.swing.ImageIcon;
 
@@ -80,7 +79,8 @@ public class traffic_lightMouseListener extends MouseAdapter {
             road.repaint();
         }
     }
-      @Override
+
+    @Override
     public void mouseReleased(MouseEvent e) {
         reallight.isDragging = false;
     }

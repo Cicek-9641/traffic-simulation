@@ -18,30 +18,26 @@ public class Ceza {
         this.cezaMiktari = cezaMiktari;
     }
 
-    // Ceza bilgilerini ekrana yazdırır ve dosyaya kaydeder
+   
     public void yazdir() {
-        // Tarih ve saat bilgisini belirli bir formata göre biçimlendirir
+     
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedDateTime = zaman.format(formatter);
-
-        // Ekrana ceza bilgilerini yazdırır
-        System.out.println(formattedDateTime + " - " + ihlalTuru + " ihlali için ceza: " + cezaMiktari + " TL");
-        // Dosyaya ceza bilgilerini ekler
+      
+        System.out.println(formattedDateTime + " - " + ihlalTuru + " ihlali için ceza: " + cezaMiktari + " TL");     
         dosyayaYaz(formattedDateTime, ihlalTuru, cezaMiktari);
     }
 
-    // Dosyaya ceza bilgilerini ekler
+  
     private void dosyayaYaz(String formattedDateTime, String ihlalTuru, int cezaMiktari) {
         try (FileWriter writer = new FileWriter("ceza_bilgileri.txt", true)) {
-            // Dosyaya tarih, ihlal türü ve ceza miktarını ekler
+           
             writer.write(formattedDateTime + " - " + ihlalTuru + " ihlali için ceza: " + cezaMiktari + " TL\n");
-        } catch (IOException e) {
-            // Dosya işlemleri sırasında oluşan hataları ekrana yazdırır
+        } catch (IOException e) {        
             e.printStackTrace();
         }
     }
-
-    // Getter ve setter metotları
+   
     public LocalDateTime getZaman() {
         return zaman;
     }

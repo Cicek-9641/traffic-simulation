@@ -6,6 +6,9 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -118,14 +121,13 @@ public class Traffic implements Runnable, ActionListener {
         frame.repaint();
 
         speedSlider.addChangeListener(new ChangeListener() {
+            
             @Override
             public void stateChanged(ChangeEvent e) {
                 int speedValue = speedSlider.getValue();
                 speedLabel.setText("Hız: " + speedValue);
-
-                // Araçların başlangıç hızlarını alarak güncelleyin
-                for (Vehicle car : road.getCars()) {
-                    // Araçların başlangıç hızlarını alarak güncelleyin
+                
+                for (Vehicle car : road.getCars()) {                   
                     car.setSpeed(speedValue);
                 }
             }
@@ -133,10 +135,10 @@ public class Traffic implements Runnable, ActionListener {
     }
 
     public void restart() {
-        running = false;  // Simülasyonu durdur
-        road.clearCars();  // Araçları temizle
-        road.repaint();    // Paneli tekrar çiz
-        running = true;   // Simülasyonu tekrar başlat
+        running = false;  
+        road.clearCars();  
+        road.repaint();    
+        running = true;   
         Thread t = new Thread(this);
         t.start();
     }
@@ -154,6 +156,7 @@ public class Traffic implements Runnable, ActionListener {
                 startTime = System.currentTimeMillis();
                 Thread t = new Thread(this);
                 t.start();
+                  writeVehicleInfoToFile();
 
 
             }
@@ -229,7 +232,7 @@ public class Traffic implements Runnable, ActionListener {
     public void run() {
         while (running == true) {
             road.step();
-            road.refillFuelForNextVehicle(); // Refill fuel for the next vehicle in the queue
+            road.refillFuelForNextVehicle(); 
             carCount = road.getCarCount();
             double throughtputCalc = carCount / (1000 * (double) (System.currentTimeMillis()) - startTime);
             throughput.setText("Throughtput" + throughtputCalc);
@@ -241,4 +244,21 @@ public class Traffic implements Runnable, ActionListener {
             }
         }
     }
+    
+     public void writeVehicleInfoToFile() {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("vergi.txt", true));
+
+            for (Vehicle vehicle : road.getCars()) {
+                writer.write("Plaka: " + vehicle.getPlaka() + " - Hız: " + vehicle.getSpeed());
+                writer.newLine();
+            }
+
+            writer.close();
+            System.out.println("Araç bilgileri vergi.txt dosyasına kaydedildi.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

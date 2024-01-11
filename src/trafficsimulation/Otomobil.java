@@ -44,16 +44,4 @@ public class Otomobil extends Vehicle {
          g.drawRect(x, y + height, width, 5);
     }
 
-//    public void paintMe(Graphics g) {
-//        g.drawImage(myImage, x, y, null);
-//
-//        int barWidth = (int) (width * (fuelLevel / 100));  
-//        g.setColor(Color.YELLOW);  
-//        g.fillRect(x, y + height, barWidth, 5); 
-//
-//        
-//        g.setColor(Color.BLACK);
-//        g.drawRect(x, y + height, width, 5);
-//    }
-
 }
