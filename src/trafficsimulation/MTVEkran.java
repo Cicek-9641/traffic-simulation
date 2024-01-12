@@ -1,4 +1,4 @@
-package trafficsimulation;
+ package trafficsimulation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,12 +29,12 @@ public class MTVEkran extends JFrame {
 	        hesaplaButton.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-	                calculateTaxAndDisplay();
+	            	vergiBul();
 	            }
 	        });
 	        add(hesaplaButton);
 
-	        loadTaxInformationFromFile("vergi.txt");
+	        dosyayaEkle("vergi.txt");
 
 	        setSize(300, 200);
 	        setLayout(new FlowLayout());
@@ -42,7 +42,7 @@ public class MTVEkran extends JFrame {
 	        setVisible(true);
 	    }
 
-	    private void calculateTaxAndDisplay() {
+	    private void vergiBul() {
 	        String plaka = plakaField.getText().trim().toUpperCase();
 
 	        for (Vergi bilgi : vergiBilgileri) {
@@ -56,7 +56,7 @@ public class MTVEkran extends JFrame {
 	        vergiLabel.setText("Araba bulunamadı.");
 	    }
 
-	    private void loadTaxInformationFromFile(String dosyaAdi) {
+	    private void dosyayaEkle(String dosyaAdi) {
 	        vergiBilgileri = new ArrayList<>();
 
 	        try (BufferedReader br = new BufferedReader(new FileReader(dosyaAdi))) {
