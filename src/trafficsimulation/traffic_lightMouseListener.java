@@ -1,10 +1,16 @@
 package trafficsimulation;
 
-
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileWriter;
 import java.io.IOException;
-
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 
@@ -43,7 +49,7 @@ public class traffic_lightMouseListener extends MouseAdapter {
                 try {
                     reallight.setImage(newImageIcon);
                     for (Vehicle car : road.getCarsOnLane(reallight.x, reallight.y)) {
-                        car.setSpeed(30);
+                        car.setSpeed(50); //tekrar bir bak!!!!  
                     }
                     road.repaint();
                     reallight.isGreen = true;
@@ -53,23 +59,28 @@ public class traffic_lightMouseListener extends MouseAdapter {
             } else {
                 ImageIcon newImageIcon = new ImageIcon("red.png");
                 reallight.setImagee(newImageIcon);
-
-                // Kırmızı ışık sırasında belirli bir sayıda aracın geçmesi durumunda ceza işlemlerini uygula
-                if (reallight.getVehiclesOnRed().size() >= 3) {
-                    Ceza ceza = new Ceza("Kırmızı Işıktan Geçme", 500);
-                    ceza.applyPenalty(reallight.getVehiclesOnRed());
-                }
-
                 for (Vehicle car : road.getCarsOnLane(reallight.x, reallight.y)) {
                     car.setSpeed(0);
+                    car.getPlaka();
+                    System.out.println("KIRMIZIDA GECEN"+car.getPlaka());
+                    double cezaMiktari = 100.0;
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    Date now = new Date();
+                    String tarih = dateFormat.format(now);
+
+                     try (PrintWriter writer = new PrintWriter(new FileWriter("ceza.txt", true))) {
+                        writer.println("Plaka: " + car.getPlaka() + ", Ceza Tutari: " + cezaMiktari + " TL, Tarih: " + tarih);
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
                 }
                 road.repaint();
-                reallight.clearVehiclesOnRed();
                 reallight.isGreen = false;
             }
         }
     }
-
+    
+    
     @Override
     public void mouseDragged(MouseEvent e) {
 
@@ -79,10 +90,8 @@ public class traffic_lightMouseListener extends MouseAdapter {
             road.repaint();
         }
     }
-
     @Override
     public void mouseReleased(MouseEvent e) {
         reallight.isDragging = false;
     }
-
 }
