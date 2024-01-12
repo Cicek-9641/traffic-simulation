@@ -1,5 +1,5 @@
-Plaka: SIM-PR5, Ceza Tutari: 1500.0 TL, Tarih: 12/01/2024 16:07:52
-Plaka: SIM-PR5, Ceza Tutari: 1500.0 TL, Tarih: 12/01/2024 16:07:55
-Plaka: SIM-PR2, Ceza Tutari: 1500.0 TL, Tarih: 12/01/2024 16:09:20
-Plaka: SIM-PR2, Ceza Tutari: 1500.0 TL, Tarih: 12/01/2024 16:09:27
-Plaka: SIM-PR2, Ceza Tutari: 1500.0 TL, Tarih: 12/01/2024 16:09:43
+Plaka: SIM-PR5, Ceza Tutari: 1500 TL, Tarih: 12/01/2024 16:07:52
+Plaka: SIM-PR5, Ceza Tutari: 1500TL, Tarih: 12/01/2024 16:07:55
+Plaka: SIM-PR2, Ceza Tutari: 1500 TL, Tarih: 12/01/2024 16:09:20
+Plaka: SIM-PR2, Ceza Tutari: 1500 TL, Tarih: 12/01/2024 16:09:27
+Plaka: SIM-PR2, Ceza Tutari: 1500 TL, Tarih: 12/01/2024 16:09:43
