@@ -13,9 +13,13 @@ public class Otomobil extends Vehicle {
     Image myImage;
 
     public Otomobil(int newx, int newy, Road road,int speed) {
+
         super(newx, newy, road,speed);
+        setType("Otomobil");
+
         width = 40;
-        height = 20;       
+        height = 20;
+      //  speed = 12;     
         fuelLevel = 100.0;
 
         try {
@@ -43,5 +47,17 @@ public class Otomobil extends Vehicle {
          g.setColor(Color.BLACK);
          g.drawRect(x, y + height, width, 5);
     }
+
+//    public void paintMe(Graphics g) {
+//        g.drawImage(myImage, x, y, null);
+//
+//        int barWidth = (int) (width * (fuelLevel / 100));  
+//        g.setColor(Color.YELLOW);  
+//        g.fillRect(x, y + height, barWidth, 5); 
+//
+//        
+//        g.setColor(Color.BLACK);
+//        g.drawRect(x, y + height, width, 5);
+//    }
 
 }
