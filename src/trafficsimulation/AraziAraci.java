@@ -14,8 +14,11 @@ public class AraziAraci extends Vehicle {
 
     public AraziAraci(int newx, int newy, Road road, int speed) {
         super(newx, newy, road,speed);
+        setType("Arazi");
+
         width = 60;
-        height = 30;      
+        height = 30;
+     // speed = 8;        
         fuelLevel = 80.0;
 
         try {
