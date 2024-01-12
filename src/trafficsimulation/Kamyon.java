@@ -15,8 +15,11 @@ public class Kamyon extends Vehicle {
 
     public Kamyon(int newx, int newy, Road road,int speed) {
         super(newx, newy, road,speed);
+        setType("Kamyon");
+
         width = 120;
         height = 40;
+       // speed = 5;
         fuelLevel = 90.0;
 
         try {
@@ -26,6 +29,12 @@ public class Kamyon extends Vehicle {
         }
     }
 
+//    public void paintMe(Graphics g) {
+//        //g.setColor(Color.BLUE);
+//        //g.fillRect(x, y, width, height);
+//        g.drawImage(myImage, x, y, null);
+//
+//    }
     public void paintMe(Graphics g) {
         g.drawImage(myImage, x, y, null);
 
