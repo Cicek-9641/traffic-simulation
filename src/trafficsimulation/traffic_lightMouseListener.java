@@ -60,10 +60,12 @@ public class traffic_lightMouseListener extends MouseAdapter {
                 ImageIcon newImageIcon = new ImageIcon("red.png");
                 reallight.setImagee(newImageIcon);
                 for (Vehicle car : road.getCarsOnLane(reallight.x, reallight.y)) {
-                    car.setSpeed(0);
+                    car.setSpeed(100);
                     car.getPlaka();
+                    int gecisHiz = car.getSpeed();
+                  if(gecisHiz >= 100) {
                     System.out.println("KIRMIZIDA GECEN"+car.getPlaka());
-                    double cezaMiktari = 100.0;
+                    double cezaMiktari = 1500;
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     Date now = new Date();
                     String tarih = dateFormat.format(now);
@@ -77,6 +79,7 @@ public class traffic_lightMouseListener extends MouseAdapter {
                 road.repaint();
                 reallight.isGreen = false;
             }
+        }
         }
     }
     
