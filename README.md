@@ -2,6 +2,7 @@
 
 
  Bu trafik simülasyonu projesi, araçların belirli bir yol üzerinde hareket ettiği ve çeşitli trafik unsurlarının modellendiği bir Java uygulamasını içermektedir. Projede, araçlar, levhalar, trafik ışıkları, benzin istasyonları ve diğer trafik elemanları simüle edilmiştir. Ayrıca, araçların benzini tükenirse en yakın benzin istasyonuna yönlendirilmesi ve kırmızı ışıkta geçiş durumlarında ceza işlemlerinin uygulanması, araçlara göre vergi ücretlerinin belirlenmesi gibi özellikler eklenmiştir.
+ 
 **OOP dersinde grup halinde yapılmıştır.**
 
 ## Katkıda Bulunanlar
